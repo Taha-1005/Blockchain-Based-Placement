@@ -1,4 +1,4 @@
-# NFT Marketplace
+# Blockchain Based Placement
 
 ## Technology Stack & Tools
 
@@ -18,7 +18,7 @@
 
 ### 2. Install Dependencies:
 ```
-$ cd nft_marketplace
+$ cd *foldername*
 $ npm install
 ```
 ### 3. Boot up local development blockchain

@@ -1,25 +1,39 @@
-import {useNavigate} from "react-router-dom"
-const  Register=()=> {
-  let navigate = useNavigate()
+import { useState } from 'react';
+import {
+  useNavigate,
+  Outlet,
+} from 'react-router-dom';
+import RegisterNavBar from './RegisterNavBar';
+import Student from './Student';
 
-    const goToLoginPage = () => {
-        console.log("Already Registered User");
-        navigate("/login")
+const Register = () => {
+  let navigate = useNavigate();
+  let [registered, setRegistered] = useState(true);
 
-    };
-    const goToRegisterUser = () => {
-        console.log("Register the User");
-        navigate("/register")
+  const goToLoginPage = () => {
+    console.log('Already Registered User');
+    navigate('/login');
+  };
 
-    };
-    return (
+  const goToStudentAndSetRegisteredAsFalse = () => {
+    setRegistered(false)
+    navigate('/register/student', {registered: true});
+  };
+
+  return (
+    <div>
+      <h1>Register User/ Company/ Faculty</h1>
+      {registered ? (
         <div>
-            <h1>Register User/ Company/ Faculty</h1>
-            <div>Already Registered?</div>
-
-            <button onClick={(event) => goToRegisterUser(event)} >No</button>
-            <button onClick={(event) => goToLoginPage(event)}>Yes</button>
+          Already Registered?
+          <button onClick={(event) => goToLoginPage(event)}>Yes</button>
+          <button onClick={() => goToStudentAndSetRegisteredAsFalse()}>No</button>
         </div>
-    )
-}
+      ) : (
+        <RegisterNavBar />
+      )}
+      <Outlet />
+    </div>
+  );
+};
 export default Register;

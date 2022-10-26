@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Company from './Company';
-import Faculty from './Faculty';
+import Company from './Registration/Company';
+import Faculty from './Registration/Faculty';
 import Login from './Login.js';
-import Register from './Register.js';
-import Student from './Student';
+import Register from './Registration/Register.js';
+import Student from './Registration/Student';
 import Welcome from './Welcome.js';
 
 function App() {
@@ -16,9 +16,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Welcome />} />
         <Route path='/register' element={<Register />}>
-          <Route path='/register/student' element={<Student registered={false} />} />
-          <Route path='/register/faculty' element={<Faculty registered={false} />} />
-          <Route path='/register/company' element={<Company registered={false} />} />
+          <Route path='student' element={<Student />} />
+          <Route path='faculty' element={<Faculty />} />
+          <Route path='company' element={<Company />} />
         </Route>
         <Route path='/login' element={<Login />} />
       </Routes>

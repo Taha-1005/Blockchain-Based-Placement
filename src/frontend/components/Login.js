@@ -26,7 +26,7 @@ const Login=()=> {
             </div>
             <div className="terms">
               <input type="checkbox" />
-              <p className="conditions">I agree to <a href="#">Terms &amp; Conditions</a></p>
+              <p className="conditions">I agree to <a href="https://github.com/Taha-1005/Blockchain-Based-Placement/tree/main/src/frontend/components">Terms &amp; Conditions</a></p>
             </div>
             <button>CREATE ACCOUNT</button>
             <p className="conditions">Don't have an account ? <a href="#">Register</a></p>

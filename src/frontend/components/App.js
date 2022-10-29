@@ -16,6 +16,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Welcome />} />
         <Route path='/register' element={<Register />}>
+          <Route index element={<Student />} />
           <Route path='student' element={<Student />} />
           <Route path='faculty' element={<Faculty />} />
           <Route path='company' element={<Company />} />

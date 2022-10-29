@@ -1,0 +1,28 @@
+.input {
+  padding: 15px;
+  margin: 10px 0px;
+  border-radius: 5px;
+  border: 1 px solid gray;
+}
+
+.formInput {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.inputLabel {
+  font-size: 17px;
+  color: rgb(69, 69, 146);
+}
+
+.errorMessage {
+  font-size: 12px;
+  padding: 3px;
+  color: rgb(232, 19, 19);
+  display: none;
+}
+
+.input:invalid ~ .errorMessage {
+  display: block;
+}

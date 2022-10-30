@@ -23,6 +23,10 @@
   display: none;
 }
 
-.input:invalid ~ .errorMessage {
+.input:invalid[focus='true'] {
+    border: 1px solid red;
+}
+
+.input:invalid[focus='true'] ~ .errorMessage {
   display: block;
 }

@@ -99,20 +99,27 @@ const Student = () => {
       type: 'text',
       placeholder: 'Paswsword',
       errorMessage:
-        'The password should be more than 5 characters and should have atleast 1 number, 1 special character, 1 alphabet',
+        'The password should be 8 to 20 characters and should have atleast 1 number, 1 special character, 1 alphabet',
+      pattern:
+        `^(?=.*[a-zA-Z])(?=.*d)(?=.*[!@#$%^&*()_+])[A-Za-zd][A-Za-zd!@#$%^&*()_+]{8,20}$`,
       label: 'Paswsword',
       required: true,
     },
     {
       id: 'confirmPassword',
       name: 'confirmPassword',
-      type: 'text',
+      type: 'password',
       placeholder: 'Confirm Password',
       errorMessage: 'Passwords should match',
       label: 'Confirm Password',
+      pattern: student.password,
       required: true,
     },
   ];
+
+  var pot = new RegExp(
+    /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();

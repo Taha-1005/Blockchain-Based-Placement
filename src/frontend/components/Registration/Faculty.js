@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 const Faculty = () => {
-  
-  return (
-    <div>Faculty</div>
-  )
-}
+  const [faculty, setFaculty] = useState({
+    fullName: '',
+    branch: '',
+    password: '',
+    confirmPassword: '',
+  });
 
-export default Faculty
+  return <div>Faculty</div>;
+};
+
+export default Faculty;

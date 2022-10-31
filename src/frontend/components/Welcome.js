@@ -7,7 +7,8 @@ let navigate=useNavigate()
     return (
         <div class='App'>
             <h1>Welcome</h1>
-            <button onClick={()=>{navigate('/register')}}>Next</button>
+            <button onClick={()=>{navigate('/register/student')}}>Sign - in</button>
+            <button onClick={()=>{navigate('/login')}}>Sign - up</button>
         </div>
     )
 }

@@ -11,7 +11,7 @@ const Login = () => {
       <div className='container'>
         <div className='sign-up'>
           <h1 className='heading'>
-            <b>LOGIN</b>
+            <b>SIGN IN</b>
           </h1>
           <div className='text'>
             <img height='20px' src={profile} />
@@ -25,16 +25,8 @@ const Login = () => {
             <img height='30px' src={password} />
             <input placeholder=' Password' type='password' />
           </div>
-          <div className='terms'>
-            <input type='checkbox' />
-            <p className='conditions'>
-              I agree to{' '}
-              <a href='https://github.com/Taha-1005/Blockchain-Based-Placement/tree/main/src/frontend/components'>
-                Terms &amp; Conditions
-              </a>
-            </p>
-          </div>
-          <button className='button_login'>CREATE ACCOUNT</button>
+          <p></p>
+          <button className='button_login'>LOGIN</button>
           <p className='conditions'>
             Don't have an account ? <a href='#'>Register</a>
           </p>

@@ -101,7 +101,7 @@ const Student = () => {
       errorMessage:
         'The password should be 8 to 20 characters and should have atleast 1 number, 1 special character, 1 alphabet',
       pattern:
-      "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$",
+      '^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[@$#%]).{8,20}$',
       label: 'Paswsword',
       required: true,
     },

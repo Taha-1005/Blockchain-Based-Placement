@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 200vh;
+  /* height: 200vh; */
   background: linear-gradient(
       rgba(255, 255, 255, 0.7),
       rgba(255, 255, 255, 0.3)
@@ -14,7 +14,9 @@
 
 .registrationForm {
   background-color: white;
-  padding: 100px 60px;
+  padding: 2% 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   border-radius: 10px;
 }
 

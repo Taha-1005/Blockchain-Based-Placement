@@ -12,8 +12,8 @@ const Faculty = () => {
 
   const inputs = [
     {
-      id: 'fullname',
-      name: 'fullname',
+      id: 'fullName',
+      name: 'fullName',
       type: 'text',
       placeholder: 'Full Name',
       errorMessage: 'Name should only consist of letters and only three names.',
@@ -32,23 +32,13 @@ const Faculty = () => {
       required: true,
     },
     {
-      id: 'rollNumber',
-      name: 'rollNumber',
-      type: 'text',
-      placeholder: 'Roll Number',
-      errorMessage: 'Invalid roll number.',
-      label: 'Roll Number',
-      pattern: '[0-9]{2}[A-Za-z]{2,3}[0-9]{3}',
-      required: true,
-    },
-    {
       id: 'password',
       name: 'password',
-      type: 'text',
+      type: 'password',
       placeholder: 'Paswsword',
       errorMessage:
         'The password should be 8 to 20 characters and should have atleast 1 number, 1 special character, 1 alphabet',
-      pattern: `^(?=.*[a-zA-Z])(?=.*d)(?=.*[!@#$%^&*()_+])[A-Za-zd][A-Za-zd!@#$%^&*()_+]{8,20}$`,
+      pattern: '^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[@$#%]).{8,20}$',
       label: 'Paswsword',
       required: true,
     },
@@ -75,7 +65,7 @@ const Faculty = () => {
   return (
     <div className='divForm'>
       <form onSubmit={handleSubmit} className='registrationForm'>
-        <h1 className='formHeader'>Student Registration</h1>
+        <h1 className='formHeader'>Faculty Registration</h1>
         {inputs.map((input) => (
           <RegistarationFormInput
             key={input.id}
@@ -84,7 +74,7 @@ const Faculty = () => {
             onChange={onChange}
           />
         ))}
-        <button className='submitButton'>Register as a student</button>
+        <button className='submitButton'>Register as a Faculty</button>
       </form>
     </div>
   );

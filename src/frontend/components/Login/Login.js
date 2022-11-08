@@ -1,9 +1,7 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 import './style.css';
-import profile from './images/user.jpg';
-import email from './images/email.jpg';
-import password from './images/password.png';
+import profile from './../images/user.jpg';
+import email from './../images/email.jpg';
+import password from './../images/password.png';
 
 const Login = () => {
   return (
@@ -28,7 +26,7 @@ const Login = () => {
           <p></p>
           <button className='button_login'>LOGIN</button>
           <p className='conditions'>
-            Don't have an account ? <a href='#'>Register</a>
+            Don't have an account ? <a href='/register/student'>Register</a>
           </p>
         </div>
         <div className='text-container'></div>

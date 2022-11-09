@@ -31,7 +31,7 @@ const Student = () => {
       name: 'fullNmae',
       type: 'text',
       placeholder: 'Full Name',
-      errorMessage: 'Name should only consist of letters.',
+      errorMessage: 'Name should only consist of letters and only three names.',
       label: 'Full Name',
       pattern: '[A-Za-z]+ [A-Za-z]+\\s{0,1}[A-Za-z]*',
       required: true,
@@ -100,8 +100,7 @@ const Student = () => {
       placeholder: 'Paswsword',
       errorMessage:
         'The password should be 8 to 20 characters and should have atleast 1 number, 1 special character, 1 alphabet',
-      pattern:
-        `^(?=.*[a-zA-Z])(?=.*d)(?=.*[!@#$%^&*()_+])[A-Za-zd][A-Za-zd!@#$%^&*()_+]{8,20}$`,
+      pattern: '^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[@$#%]).{8,20}$',
       label: 'Paswsword',
       required: true,
     },
@@ -116,10 +115,6 @@ const Student = () => {
       required: true,
     },
   ];
-
-  var pot = new RegExp(
-    /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/
-  );
 
   const handleSubmit = (e) => {
     e.preventDefault();

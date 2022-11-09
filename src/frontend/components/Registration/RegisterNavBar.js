@@ -3,9 +3,6 @@ import './RegistrationNavBarStyle.css';
 import { NavLink } from 'react-router-dom';
 
 const RegisterNavBar = () => {
-  let activeStyle = {
-    textDecoration: 'underline',
-  };
   return (
     <div className='body'>
       <nav className='nav'>

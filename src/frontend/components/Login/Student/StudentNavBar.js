@@ -11,13 +11,13 @@ const StudentNavBar = () => {
         </NavLink>
         <ul>
           <li>
-            <NavLink to='/studentlogin/company'>Apply In Company</NavLink>
+            <NavLink to='/student-home/company'>Apply In Company</NavLink>
           </li>
           <li>
-            <NavLink to='/studentlogin/lor'>Apply for Lor</NavLink>
+            <NavLink to='/student-home/lor'>Apply for Lor</NavLink>
           </li>
           <li>
-            <NavLink to='/studentlogin/account'>Account</NavLink>
+            <NavLink to='/student-home/account'>Account</NavLink>
           </li>
         </ul>
       </nav>

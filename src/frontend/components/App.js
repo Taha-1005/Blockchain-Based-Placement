@@ -7,9 +7,9 @@ import Register from './Registration/Register.js';
 import Student from './Registration/Student';
 import ApplyInCompany from './Login/Student/ApplyInCompany';
 import Welcome from './Welcome.js';
-import StudentNavBar from './Login/Student/StudentNavBar';
 import ApplyForLor from './Login/Student/ApplyForLor';
 import AccountPage from './Login/Student/AccountPage';
+import StudentHome from './Login/Student/StudentHome';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
           <Route path='company' element={<Company />} />
         </Route>
         <Route path='/login' element={<Login />} />
-        <Route path='/studentlogin' element={<ApplyInCompany />}>
+        <Route path='/student-home' element={<StudentHome />}>
           <Route index element={<ApplyInCompany />} />
           <Route path='company' element={<ApplyInCompany />} />
           <Route path='lor' element={<ApplyForLor />} />

@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 const ApplyInCompany = () => {
-  return (
-    <div>ApplyInCompany</div>
-  );
+  const [company, setCompany] = useState({
+    eligibleBranches: [],
+    name: '',
+    ctc: '',
+    onlyInternship: '',
+    onlyJob: '',
+    internshipAndJob: '',
+    linkToWebsite: '',
+    location: [],
+    category: '',
+    minBacklogs: '',
+    minPpi: '',
+    seatsAvailable: '',
+  });
+  return <div>ApplyInCompany</div>;
 };
-
-export default ApplyInCompany
+export default ApplyInCompany;

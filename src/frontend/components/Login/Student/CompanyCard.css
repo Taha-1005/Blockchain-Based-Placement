@@ -1,0 +1,37 @@
+.companyCard {
+  margin: 2rem 4rem 2rem 4rem;
+  padding: 1.5rem;
+  box-shadow: 0 0 28px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.companyCard:hover {
+  transform: scale(1.1);
+}
+
+.post {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.cardTitle {
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.cardBody {
+  display: flex;
+}
+
+.jobType {
+  margin: 0rem 2rem;
+}
+
+.ctc {
+  margin: 0rem 2rem;
+}
+
+.location {
+  margin: 0rem 2rem;
+}

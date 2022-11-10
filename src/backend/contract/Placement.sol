@@ -92,7 +92,7 @@ contract Placement {
     ) public {
         require(!doesAddressExists(payable(msg.sender)), "___Please use another address___");
 
-        require(compare(students[_rollno].rollno,""),"___Student already Registered");
+        require(compare(students[_rollno].rollno,""),"___Student already Registered___");
         totalStudents++;
         students[_rollno] = Student(
             _rollno,
@@ -211,10 +211,10 @@ contract Placement {
 
     function loginCompany(uint _companyId, string memory _password)  public returns (bool){
         // company not registered
-        require(companyExists(_companyId),"Company not registered with this account");
+        require(companyExists(_companyId),"___Company not registered with this account___");
 
         // company credential invalid
-        require(isValidCompany(_companyId,_password),"Invalid credentials");
+        require(isValidCompany(_companyId,_password),"___Invalid credentials___");
 
         console.log("Successful login!");
         companyLoggedIn[msg.sender]=true;
@@ -254,10 +254,10 @@ contract Placement {
 
     function loginFaculty(uint _facultyId, string memory _password)  public returns (bool){
         // faculty not registered
-        require(facultyExists(_facultyId),"Faculty not registered with this account");
+        require(facultyExists(_facultyId),"___Faculty not registered with this account___");
 
         // faculty credential invalid
-        require(isValidFaculty(_facultyId,_password),"Invalid credentials");
+        require(isValidFaculty(_facultyId,_password),"___Invalid credentials___");
 
         console.log("Successful login!");
         facultyLoggedIn[msg.sender]=true;
@@ -301,7 +301,7 @@ contract Placement {
         // check eligiblity
         require(
             isEligible(_companyId, _studentRollno),
-            "You are not eligible to apply for this comapny :("
+            "___You are not eligible to apply for this comapny :(___"
         );
 
         // registered student in company

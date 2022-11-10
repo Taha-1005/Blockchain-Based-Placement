@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
+import swal from 'sweetalert';
+import { useNavigate } from 'react-router';
+
+import extractErrorCode from '../ErrorMessage.js';
 import RegistarationFormInput from './RegistarationFormInput';
 import './RegistrationFormStyle.css';
 
-const Student = ({ web3Handler, account, Placement, provider }) => {
+
+const Student = ({ web3Handler, account, placement, provider }) => {
+  const navigate = useNavigate();
+
   const [student, setStudent] = useState({
     rollNumber: '',
     fullName: '',
@@ -119,47 +126,61 @@ const Student = ({ web3Handler, account, Placement, provider }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (account != null) {
-      const temp = student.addressL1 + ' ' + student.addressL2;
-      console.log('Address', temp);
-      let studentId;
+      let txn;
+      // let backlog = parseInt(student.backlogs.toString(), 10);
+      // console.log(backlog, typeof (backlog));
+      let _ppi=[student.ppi.toString()];
+      console.log(_ppi, typeof (_ppi));
+      let _spi = [student.spi.toString()];
+      console.log(_spi, typeof (_spi));
       try {
-        studentId = await swms.registerStudent(
+        txn = await placement.registerStudent(
+          student.rollNumber.toString(),
           student.fullName.toString(),
-          temp.toString(),
-          student.password.toString()
+          student.password.toString(),
+          // student.ppi.toString(),
+          _ppi,
+          _spi,
+          // student.spi.toString(),
+          //  _percentage10,
+          student.twelthPercentage.toString(),
+          parseInt(student.backlogs.toString(),10)
         );
         let cid;
         // wait for transaction
 
-        console.log(studentId.hash);
+        console.log(txn.hash);
         provider
-          .waitForTransaction(studentId.hash)
-          .then(async function (studentId) {
-            console.log('Transaction Mined: ' + studentId.hash);
-            console.log(studentId);
-            cid = await swms.totalStudents();
+          .waitForTransaction(txn.hash)
+          .then(async function (txn) {
+            console.log('Transaction Mined: ' + txn.hash);
+            console.log(txn);
+            cid = await placement.totalStudents();
             cid = parseInt(cid.toHexString(), 16);
             swal(
               'Hurray!!',
-              'You are registered successfully ...\n Kindly remeber your id: ' +
-              cid,
+              'You are registered successfully!',
               'success'
             );
             navigate('/login');
-            console.log('New id: ', cid);
-            let address = await swms.students(cid);
+            let tot = await placement.totalStudents();
+            console.log("Total studs ", tot);
+
+            let address = await placement.students(student.rollNumber.toString());
             console.log(address, typeof cid);
             console.log('Address', address.student, typeof cid);
           });
       } catch (err) {
-        let x = err.message.toString();
+        // let x = err.data.message.toString();
+        // console.log("Json", JSON.stringify(err), typeof (JSON.stringify(err)));
+        let x = JSON.stringify(err);
         console.log('Error: ', err, "to string", x);
         const errMsg = extractErrorCode(x);
+        console.log(errMsg);
         console.log('Error in registering: ', errMsg);
         swal('Oops!', errMsg, 'error');
       }
     } else {
-      // alert('Please connect your metamask account before rgistering.');
       swal(
         'Oops',
         'Please connect your metamask account before registering.',

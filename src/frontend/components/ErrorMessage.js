@@ -1,4 +1,5 @@
 function extractErrorCode(str) {
+    console.log("=>",str,"\n=>",str.toString())
     if (str.includes('Nonce too high')) {
         console.log("Nonce too high");
         return '\t\tNonce is too High\n Reset your acc using: \n settings-> Advanced-> Reset your account';

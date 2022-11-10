@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+
 import { ethers } from "ethers"
 import swal from 'sweetalert';
 
@@ -20,10 +21,11 @@ import PlacementAddress from '../contractsData/Placement-address.json'
 import PlacementAbi from '../contractsData/Placement.json'
 
 function App() {
+  
   const [account, setAccount] = useState(null)
   const [placement, setPlacement] = useState({})
   const [provider, setProvider] = useState();
-
+  
   const web3Handler = async () => {
 
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -52,8 +54,8 @@ function App() {
   const loadContracts = async (signer) => {
     console.log("in load Contract")
 
-    const swms1 = new ethers.Contract(PlacementAddress.address, PlacementAbi.abi, signer)
-    setPlacement(swms1);
+    const placement = new ethers.Contract(PlacementAddress.address, PlacementAbi.abi, signer)
+    setPlacement(placement);
     console.log("Loaded..", placement, account);
     swal("Successfully connected", "", "success");
     // setLoading(false)

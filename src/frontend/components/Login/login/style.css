@@ -1,10 +1,11 @@
 @charset "utf-8";
 /* CSS Document */
-body {
-  background-color: #eef1f8;
+.body3 {
+  background-color: #1ab081;
   margin: 0px;
   padding: 0px;
 }
+
 a {
   text-decoration: none;
 }
@@ -21,8 +22,8 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  /*background-image: url("images/.jpg");
- /*background-position: center;*/
+  
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -39,7 +40,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-image: url('./../images/logo.png');
+  background-image: url('./../../images/logo.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

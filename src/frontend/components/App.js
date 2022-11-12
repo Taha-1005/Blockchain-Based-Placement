@@ -7,7 +7,7 @@ import swal from 'sweetalert';
 import './App.css';
 import Company from './Registration/Company';
 import Faculty from './Registration/Faculty';
-import Login from './Login/Login.js';
+import Login from './Login/login/Login.js';
 import Register from './Registration/Register.js';
 import Student from './Registration/Student';
 import ApplyInCompany from './Login/Student/ApplyInCompany';
@@ -15,7 +15,7 @@ import Welcome from './Welcome.js';
 import ApplyForLor from './Login/Student/ApplyForLor';
 import AccountPage from './Login/Student/AccountPage';
 import StudentHome from './Login/Student/StudentHome';
-
+import FacultyPage from './Login/Faculty/FacultyPage';
 
 import PlacementAddress from '../contractsData/Placement-address.json'
 import PlacementAbi from '../contractsData/Placement.json'
@@ -76,7 +76,10 @@ function App() {
           <Route path='company' element={<ApplyInCompany />} />
           <Route path='lor' element={<ApplyForLor />} />
           <Route path='account' element={<AccountPage />} />
+          
         </Route>
+        <Route path='/faculty-home' element={<FacultyPage />}/>
+        
       </Routes>
     </BrowserRouter>
   );

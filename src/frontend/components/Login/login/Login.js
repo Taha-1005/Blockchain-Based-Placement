@@ -1,11 +1,12 @@
 import './style.css';
-import profile from './../images/user.jpg';
-import email from './../images/email.jpg';
-import password from './../images/password.png';
+import profile from './../../images/user.jpg';
+import email from './../../images/email.jpg';
+import password from './../../images/password.png';
 
 const Login = () => {
   return (
     <div>
+      <body className='body3'>
       <div className='container'>
         <div className='sign-up'>
           <h1 className='heading'>
@@ -31,6 +32,7 @@ const Login = () => {
         </div>
         <div className='text-container'></div>
       </div>
+      </body>
     </div>
   );
 };

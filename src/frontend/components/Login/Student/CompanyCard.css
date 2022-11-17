@@ -3,6 +3,7 @@
   padding: 1.5rem;
   box-shadow: 0 0 28px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  background-color: black;
   cursor: pointer;
 }
 
@@ -34,4 +35,12 @@
 
 .location {
   margin: 0rem 2rem;
+}
+
+.link {
+  color: #FFF;
+
+}
+.link:hover {
+  color: green;
 }

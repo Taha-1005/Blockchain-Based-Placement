@@ -19,6 +19,7 @@ import StudentHome from './Login/Student/StudentHome';
 
 import PlacementAddress from '../contractsData/Placement-address.json'
 import PlacementAbi from '../contractsData/Placement.json'
+import CompanyDetails from './Login/Student/CompanyDetails';
 
 function App() {
   
@@ -76,6 +77,7 @@ function App() {
           <Route path='company' element={<ApplyInCompany />} />
           <Route path='lor' element={<ApplyForLor />} />
           <Route path='account' element={<AccountPage />} />
+          <Route path='company-details' element={<CompanyDetails />} />
         </Route>
       </Routes>
     </BrowserRouter>

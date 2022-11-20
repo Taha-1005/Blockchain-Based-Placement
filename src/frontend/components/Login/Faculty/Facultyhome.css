@@ -1,84 +1,76 @@
-*,*::before,*::after{
-    box-sizing: border-box;
-    margin:0;
-    padding:0;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-
-body{
-    font-family: Oxygen, sans-serif;
-    margin:2rem;
+.body1 {
+  font-family: Oxygen, sans-serif;
+  margin: 2rem;
 }
 
-.wrapper1{
-    display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(24rem,12rem));
-    justify-content: center;
+.wrapper1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 12rem));
+  justify-content: center;
 }
 
-.card{
-    overflow: hidden;
-    border-radius: 0.2rem;
-    display:flex;
-    flex-direction: column;
-    cursor: pointer;
-    transition: transform 200ms ease-in;
-    box-shadow: 2px 6px 18px rgba(66, 57, 238, 0.3);
-
+.card {
+  overflow: hidden;
+  border-radius: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 200ms ease-in;
+  box-shadow: 2px 6px 18px rgba(66, 57, 238, 0.3);
 }
 
-.card .card__image{
-    height: 12rem;
-    width: 100%;
-    object-fit: cover;
-
+.card .card__image {
+  height: 12rem;
+  width: 100%;
+  object-fit: cover;
 }
 
-.card .card__title{
-    padding: 1rem;
+.card .card__title {
+  padding: 1rem;
 }
 
-.card .card__description{
-    padding: 0 1rem;
+.card .card__description {
+  padding: 0 1rem;
 }
 
-.card .card_btn1{
-    padding:1rem;
-    font-family:inherit;
-    font-weight:bold;
-    font-size: 1rem;
-    margin:1rem;
-    border:2px solid #4d8ee9;
-    background: #4d8ee9;;
-    color:white;
-    border-radius: 0.2rem;
-    transition: background 200ms ease-in,color 200ms ease-in;
-    width: 125px;
-     height: 60px;
+.card .card_btn1 {
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem;
+  border: 2px solid #4d8ee9;
+  background: #4d8ee9;
+  color: white;
+  border-radius: 0.2rem;
+  transition: background 200ms ease-in, color 200ms ease-in;
+  width: 125px;
+  height: 60px;
 }
 
-.card .card_btn2{
-    padding:1rem;
-    font-family:inherit;
-    font-weight:bold;
-    font-size: 1rem;
-    margin:1rem;
-    border:2px solid #d50000;
-    background: #d50000;
-    color:white;
-    border-radius: 0.2rem;
-    transition: background 200ms ease-in,color 200ms ease-in;
-    width: 125px;
-   height: 60px;
-    
+.card .card_btn2 {
+  padding: 1rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 1rem;
+  border: 2px solid #d50000;
+  background: #d50000;
+  color: white;
+  border-radius: 0.2rem;
+  transition: background 200ms ease-in, color 200ms ease-in;
+  width: 125px;
+  height: 60px;
 }
 
-.card #button1 #button2{
-    display: inline-block;
+.card #button1 #button2 {
+  display: inline-block;
 }
-
-
-
-
-
-

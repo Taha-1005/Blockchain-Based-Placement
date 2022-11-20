@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
-import { ethers } from "ethers"
+import { ethers } from 'ethers';
 import swal from 'sweetalert';
 
 import './App.css';
@@ -17,61 +17,114 @@ import AccountPage from './Login/Student/AccountPage';
 import StudentHome from './Login/Student/StudentHome';
 import FacultyPage from './Login/Faculty/FacultyPage';
 
-import PlacementAddress from '../contractsData/Placement-address.json'
-import PlacementAbi from '../contractsData/Placement.json'
+import PlacementAddress from '../contractsData/Placement-address.json';
+import PlacementAbi from '../contractsData/Placement.json';
 import CompanyDetails from './Login/Student/CompanyDetails';
 
 function App() {
-  
-  const [account, setAccount] = useState(null)
-  const [placement, setPlacement] = useState({})
+  const [account, setAccount] = useState(null);
+  const [placement, setPlacement] = useState({});
   const [provider, setProvider] = useState();
-  
-  const web3Handler = async () => {
 
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+  const web3Handler = async () => {
+    const accounts = await window.ethereum.request({
+      method: 'eth_requestAccounts',
+    });
     setAccount(accounts[0]);
-    console.log("Acc= ", accounts[0]);
-    console.log("Acc state= ", account);
+    console.log('Acc= ', accounts[0]);
+    console.log('Acc state= ', account);
 
     // Get provider from Metamask
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    console.log("After provider");
-    setProvider(provider)
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    console.log('After provider');
+    setProvider(provider);
     // Set signer
-    const signer = provider.getSigner()
+    const signer = provider.getSigner();
 
     window.ethereum.on('chainChanged', (chainId) => {
       window.location.reload();
-    })
+    });
 
     window.ethereum.on('accountsChanged', async function (accounts) {
-      setAccount(accounts[0])
-      await web3Handler()
-    })
-    loadContracts(signer)
-    console.log("Acc :",account)
-  }
+      setAccount(accounts[0]);
+      await web3Handler();
+    });
+    loadContracts(signer);
+    console.log('Acc :', account);
+  };
   const loadContracts = async (signer) => {
-    console.log("in load Contract")
+    console.log('in load Contract');
 
-    const placement = new ethers.Contract(PlacementAddress.address, PlacementAbi.abi, signer)
+    const placement = new ethers.Contract(
+      PlacementAddress.address,
+      PlacementAbi.abi,
+      signer
+    );
     setPlacement(placement);
-    console.log("Loaded..", placement, account);
-    swal("Successfully connected", "", "success");
+    console.log('Loaded..', placement, account);
+    swal('Successfully connected', '', 'success');
     // setLoading(false)
-  }
+  };
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Welcome />} />
         <Route path='/register' element={<Register />}>
-          <Route index element={<Student web3Handler={web3Handler} account={account} placement={ placement}  provider={provider} />} />
-          <Route path='student' element={<Student web3Handler={web3Handler} account={account} placement={placement}  provider={provider} />} />
-          <Route path='faculty' element={<Faculty web3Handler={web3Handler} account={account} placement={placement} provider={provider} />} />
-          <Route path='company' element={<Company web3Handler={web3Handler} account={account} placement={placement} provider={provider} />} />
+          <Route
+            index
+            element={
+              <Student
+                web3Handler={web3Handler}
+                account={account}
+                placement={placement}
+                provider={provider}
+              />
+            }
+          />
+          <Route
+            path='student'
+            element={
+              <Student
+                web3Handler={web3Handler}
+                account={account}
+                placement={placement}
+                provider={provider}
+              />
+            }
+          />
+          <Route
+            path='faculty'
+            element={
+              <Faculty
+                web3Handler={web3Handler}
+                account={account}
+                placement={placement}
+                provider={provider}
+              />
+            }
+          />
+          <Route
+            path='company'
+            element={
+              <Company
+                web3Handler={web3Handler}
+                account={account}
+                placement={placement}
+                provider={provider}
+              />
+            }
+          />
         </Route>
-        <Route path='/login' element={<Login web3Handler={web3Handler} account={account} placement={placement} />} />
+        <Route
+          path='/login'
+          element={
+            <Login
+              web3Handler={web3Handler}
+              account={account}
+              placement={placement}
+            />
+          }
+        />
         <Route path='/student-home' element={<StudentHome />}>
           <Route index element={<ApplyInCompany />} />
           <Route path='company' element={<ApplyInCompany />} />
@@ -79,8 +132,7 @@ function App() {
           <Route path='account' element={<AccountPage />} />
           <Route path='company-details' element={<CompanyDetails />} />
         </Route>
-        <Route path='/faculty-home' element={<FacultyPage />}/>
-        
+        <Route path='/faculty-home' element={<FacultyPage />} />
       </Routes>
     </BrowserRouter>
   );

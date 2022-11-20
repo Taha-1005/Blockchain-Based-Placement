@@ -56,7 +56,7 @@ const ApplyInCompany = () => {
       onlyJob: '0',
       internshipAndJob: '0',
       linkToWebsite: 'c.com',
-      location: ['Rajkot'],
+      location: ['Rajkot','Banglore','Mumbai','Hyderabad'],
       category: 'A',
       minBacklogs: '0',
       minPpi: '7.5',
@@ -67,7 +67,7 @@ const ApplyInCompany = () => {
   return (
     <div className='applyCompany'>
       {companies.map((comp) => (
-        <CompanyCard companyData={comp} />
+        <CompanyCard companyData={comp} key={comp.name} />
       ))}
     </div>
   );

@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import swal from 'sweetalert';
+import { useNavigate } from 'react-router';
 import RegistarationFormInput from './RegistarationFormInput';
 import './RegistrationFormStyle.css';
+import extractErrorCode from '../ErrorMessage.js';
+
+
 const Company = ({ web3Handler, account, placement, provider }) => {
   const [company, setCompany] = useState({
     name: '',
@@ -22,7 +27,7 @@ const Company = ({ web3Handler, account, placement, provider }) => {
       placeholder: 'Company Name',
       errorMessage: 'Enter valid Compnay Name',
       label: 'Company Name',
-      pattern: '[a-zA-Z]+',
+      pattern: '[a-zA-Z ]+',
       required: true,
     },
     {
@@ -41,7 +46,7 @@ const Company = ({ web3Handler, account, placement, provider }) => {
       type: 'text',
       placeholder: 'Location of the job',
       errorMessage: 'Enter valid Location',
-      pattern: '[a-zA-Z]+',
+      pattern: '[a-zA-Z, ]+',
       label: 'Location',
       required: true,
     },
@@ -121,13 +126,65 @@ const Company = ({ web3Handler, account, placement, provider }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Company Name: ", company.name[0]);
-    console.log("Company CTC: ", company.ctc[0],typeof(company.ctc[0]));
     console.log("Company description : ", company.description[0], typeof (company.description[0]));
+    console.log("Company CTC: ", company.ctc[0], typeof (company.ctc[0]));
     console.log("Company category : ", company.category[0], typeof (company.category[0]));
     console.log("Company location : ", company.location[0], typeof (company.location[0]));
     console.log("Company maxBackLogs: ", parseInt(company.maxBackLogs[0],10), typeof(parseInt(company.maxBackLogs[0],10)));
     console.log("Company minPPI: ", company.minPPI[0], typeof (company.minPPI[0]));
-   
+    if (account != null) {
+      let txn;
+      try {
+        txn = await placement.registerCompany(
+          company.name[0],
+          company.description[0],
+          company.password[0],
+          parseInt(company.category[0], 10),
+          company.ctc[0],
+          company.location[0],
+          parseInt(company.maxBackLogs[0], 10),
+          company.minPPI[0]
+        );
+        let cid;
+        // wait for transaction
+
+        console.log(txn.hash);
+        provider
+          .waitForTransaction(txn.hash)
+          .then(async function (txn) {
+            console.log('Transaction Mined: ' + txn);
+            cid = await placement.totalCompanies();
+            cid = parseInt(cid.toHexString(), 16);
+            // navigate('/login');
+            swal(
+              'Hurray!!',
+              'You are registered successfully ...\n Kindly remeber your id: ' +
+              cid,
+              'success'
+            );
+            let _company = await placement.companies(cid);
+            console.log("Company registered ", _company.name);
+            console.log("Company wallet ", _company.company);
+            console.log("Company description  ", _company.description);
+            console.log("Company  ", parseInt(_company.category.toHexString(), 16));
+            console.log(_company.ctc, _company.location);
+
+           });
+      } catch (err) {
+        let x = JSON.stringify(err);
+        console.log('Error: ', err, "to string", x);
+        const errMsg = extractErrorCode(x);
+        console.log(errMsg);
+        console.log('Error in registering: ', errMsg);
+        swal('Oops!', errMsg, 'error');
+      }
+    } else {
+      swal(
+        'Oops',
+        'Please connect your metamask account before registering.',
+        'error'
+      );
+    }
 
   };
 

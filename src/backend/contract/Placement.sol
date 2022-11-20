@@ -28,7 +28,7 @@ contract Placement {
         string description;
         uint256 category; // 1-> A+ 2-> A 3-> B
         string ctc;
-        string[] location;
+        string location;
         string[] finalSelectedStudents;
         string[] registeredStudents;
         // elgiblity criterion
@@ -178,7 +178,7 @@ contract Placement {
         string memory _password,
         uint256 _category,
         string memory _ctc,
-        string[] memory _location,
+        string memory _location,
         uint256 _maxBackLogs,
         string memory _minPPI
     

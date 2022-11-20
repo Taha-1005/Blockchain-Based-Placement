@@ -104,7 +104,7 @@ const Student = ({ web3Handler, account, placement, provider }) => {
       id: 'password',
       name: 'password',
       type: 'password',
-      placeholder: 'Paswsword',
+      placeholder: 'Password',
       errorMessage:
         'The password should be 8 to 20 characters and should have atleast 1 number, 1 special character, 1 alphabet',
       pattern: '^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[@$#%]).{8,20}$',

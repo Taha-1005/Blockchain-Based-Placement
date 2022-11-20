@@ -1,8 +1,8 @@
 import './style.css';
-import profile from './../images/user.jpg';
-import email from './../images/email.jpg';
-import password from './../images/password.png';
-import extractErrorCode from '../ErrorMessage';
+import profile from '../../images/user.jpg';
+import email from '../../images/email.jpg';
+import password from '../../images/password.png';
+import extractErrorCode from '../../ErrorMessage';
 
 import swal from 'sweetalert';
 import { useState } from 'react';

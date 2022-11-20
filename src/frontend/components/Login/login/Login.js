@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 import { useNavigate } from 'react-router';
 
-const Login = ({ web3Handler, account, placement }) => {
+const Login = ({ web3Handler, account, placement,provider }) => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
@@ -96,10 +96,14 @@ const Login = ({ web3Handler, account, placement }) => {
             try {
               txn = await placement.loginStudent(user.id[0].toString(), user.password[0]);
               console.log("Student login done ...txn");
-              let temp = await placement.studentLoggedIn(account);
-              console.log(temp);
-              swal("Hurray", "Logged in Successfully", "success");
-              navigate('/student-home');
+              provider.waitForTransaction(txn.hash)
+                .then(async function () {
+                  let temp = await placement.studentLoggedIn(account);
+                  console.log(temp);
+                  navigate('/student-home/company');
+                  swal("Hurray", "Logged in Successfully", "success");
+                  
+                });
 
             } catch (err) {
               // let x = err.message.toString();

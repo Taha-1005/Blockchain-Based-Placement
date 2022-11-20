@@ -7,6 +7,7 @@ import extractErrorCode from '../ErrorMessage.js';
 
 
 const Company = ({ web3Handler, account, placement, provider }) => {
+  const navigate = useNavigate();
   const [company, setCompany] = useState({
     name: '',
     description: '',
@@ -27,7 +28,7 @@ const Company = ({ web3Handler, account, placement, provider }) => {
       placeholder: 'Company Name',
       errorMessage: 'Enter valid Compnay Name',
       label: 'Company Name',
-      pattern: '[a-zA-Z ]+',
+      pattern: '[a-zA-Z., ]+',
       required: true,
     },
     {
@@ -155,7 +156,7 @@ const Company = ({ web3Handler, account, placement, provider }) => {
             console.log('Transaction Mined: ' + txn);
             cid = await placement.totalCompanies();
             cid = parseInt(cid.toHexString(), 16);
-            // navigate('/login');
+            navigate('/login');
             swal(
               'Hurray!!',
               'You are registered successfully ...\n Kindly remeber your id: ' +

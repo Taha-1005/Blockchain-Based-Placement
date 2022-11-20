@@ -122,17 +122,18 @@ function App() {
               web3Handler={web3Handler}
               account={account}
               placement={placement}
+              provider={provider}
             />
           }
         />
-        <Route path='/student-home' element={<StudentHome />}>
-          <Route index element={<ApplyInCompany />} />
-          <Route path='company' element={<ApplyInCompany />} />
-          <Route path='lor' element={<ApplyForLor />} />
-          <Route path='account' element={<AccountPage />} />
-          <Route path='company-details' element={<CompanyDetails />} />
+        <Route path='/student-home' element={<StudentHome placement={placement} />}>
+          <Route index element={<ApplyInCompany placement={placement}/>} />
+          <Route path='company' element={<ApplyInCompany placement={placement} />} />
+          <Route path='lor' element={<ApplyForLor placement={placement} />} />
+          <Route path='account' element={<AccountPage placement={placement} />} />
+          <Route path='company-details' element={<CompanyDetails placement={placement} />} />
         </Route>
-        <Route path='/faculty-home' element={<FacultyPage />} />
+        <Route path='/faculty-home' element={<FacultyPage placement={placement} />} />
       </Routes>
     </BrowserRouter>
   );

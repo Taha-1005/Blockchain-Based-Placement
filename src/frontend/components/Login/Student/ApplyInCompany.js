@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import CompanyCard from './CompanyCard';
 
-const ApplyInCompany = ({placement}) => {
+const ApplyInCompany = ({ placement }) => {
   const [loading, setLoading] = useState(true);
   const [companies, setCompanies] = useState([]);
   const [company, setCompany] = useState({
@@ -66,25 +66,25 @@ const ApplyInCompany = ({placement}) => {
   //     post: 'Software Engineer',
   //   },
   // ];
- 
+
   const listRegisteredCompanies = async () => {
-    let _companies = []
-    console.log("lisiting companies ",placement);
+    let companiesData = [];
+    console.log('lisiting companies ', placement);
     const totalCompanies = await placement.totalCompanies();
 
     for (let index = 1; index <= totalCompanies; index++) {
-      const _company = await placement.companies(index)
+      const _company = await placement.companies(index);
       // if (_company.isListed) {
-      console.log("Company registered ", _company.name);
-      console.log("Company wallet ", _company.company);
-      console.log("Company description  ", _company.description);
-      console.log("Company  ", parseInt(_company.category.toHexString(), 16));
+      console.log('Company registered ', _company.name);
+      console.log('Company wallet ', _company.company);
+      console.log('Company description  ', _company.description);
+      console.log('Company  ', parseInt(_company.category.toHexString(), 16));
       console.log(_company.ctc, _company.location);
 
       // get total price of _company (_company price + fee)
       // const totalPrice = await placement.getTotPrice(_company._companyId)
-      console.log()
-      _companies.push({
+      console.log();
+      companiesData.push({
         eligibleBranches: [],
         name: _company.name,
         ctc: _company.ctc,
@@ -97,17 +97,16 @@ const ApplyInCompany = ({placement}) => {
         minBacklogs: _company.maxBackLogs,
         minPpi: _company.minPPI,
         seatsAvailable: '',
-      })
+      });
       // }
     }
 
     setLoading(false);
-    setCompanies(_companies);
-
-  }
+    setCompanies(companiesData);
+  };
   useEffect(() => {
-    listRegisteredCompanies()
-  }, [])
+    listRegisteredCompanies();
+  }, []);
   // if (loading) return (
   //   <main style={{ padding: "1rem 0" }}>
   //     <h2>Loading....</h2>
@@ -115,15 +114,12 @@ const ApplyInCompany = ({placement}) => {
   // )
   return (
     <div className='applyCompany'>
-      {// {company.map((comp) => (
-      }
       {
-        companies.map((comp) => (
-        <CompanyCard companyData={comp} key={comp.name} />
-        ))
-
-        
+        // {company.map((comp) => (
       }
+      {companies.map((comp) => (
+        <CompanyCard companyData={comp} key={comp.name} />
+      ))}
     </div>
   );
 };

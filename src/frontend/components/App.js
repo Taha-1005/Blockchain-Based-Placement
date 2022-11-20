@@ -126,14 +126,29 @@ function App() {
             />
           }
         />
-        <Route path='/student-home' element={<StudentHome placement={placement} />}>
-          <Route index element={<ApplyInCompany placement={placement}/>} />
-          <Route path='company' element={<ApplyInCompany placement={placement} />} />
+        <Route
+          path='/student-home'
+          element={<StudentHome placement={placement} />}
+        >
+          <Route index element={<ApplyInCompany placement={placement} />} />
+          <Route
+            path='company'
+            element={<ApplyInCompany placement={placement} />}
+          />
           <Route path='lor' element={<ApplyForLor placement={placement} />} />
-          <Route path='account' element={<AccountPage placement={placement} />} />
-          <Route path='company-details' element={<CompanyDetails placement={placement} />} />
+          <Route
+            path='account'
+            element={<AccountPage placement={placement} />}
+          />
+          <Route
+            path='company-details'
+            element={<CompanyDetails placement={placement} />}
+          />
         </Route>
-        <Route path='/faculty-home' element={<FacultyPage placement={placement} />} />
+        <Route
+          path='/faculty-home'
+          element={<FacultyPage placement={placement} />}
+        />
       </Routes>
     </BrowserRouter>
   );

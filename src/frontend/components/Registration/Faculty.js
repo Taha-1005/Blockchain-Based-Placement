@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
+import swal from 'sweetalert';
+import { useNavigate } from 'react-router';
+
+import extractErrorCode from '../ErrorMessage.js';
 import RegistarationFormInput from './RegistarationFormInput';
 import './RegistrationFormStyle.css';
 
-const Faculty = () => {
+const Faculty = ({ web3Handler, account, placement, provider }) => {
+  const navigate = useNavigate();
+
   const [faculty, setFaculty] = useState({
     fullName: '',
     branch: '',
@@ -54,8 +60,59 @@ const Faculty = () => {
     },
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (account != null) {
+      let txn, fid;
+      // let backlog = parseInt(student.backlogs.toString(), 10);
+      // console.log(backlog, typeof (backlog));
+      try {
+        txn = await placement.registerFaculty(
+          faculty.fullName.toString(),
+          faculty.branch.toString(),
+          faculty.password.toString(),
+        );
+        // wait for transaction
+        console.log(txn.hash);
+        provider
+          .waitForTransaction(txn.hash)
+          .then(async function (txn) {
+            console.log('Transaction Mined: ' + txn.hash);
+            console.log(txn);
+            fid = await placement.totalStudents();
+            fid = parseInt(fid.toHexString(), 16);
+            // navigate('/login');
+            swal(
+              'Hurray!!',
+              'You are registered successfully!  \n Kindly remeber your id: ' +
+              fid,
+              'success'
+            );
+            console.log("Total faculties ", fid);
+
+            let _faculty = await placement.faculties(fid);
+            console.log(_faculty, typeof fid);
+            console.log('Address', _faculty.faculty, typeof fid);
+            console.log("Name ", _faculty.name);
+            console.log("Password ", _faculty.password);
+          });
+      } catch (err) {
+        // let x = err.data.message.toString();
+        // console.log("Json", JSON.stringify(err), typeof (JSON.stringify(err)));
+        let x = JSON.stringify(err);
+        console.log('Error: ', err, "to string", x);
+        const errMsg = extractErrorCode(x);
+        console.log(errMsg);
+        console.log('Error in registering: ', errMsg);
+        swal('Oops!', errMsg, 'error');
+      }
+    } else {
+      swal(
+        'Oops',
+        'Please connect your metamask account before registering.',
+        'error'
+      );
+    }
   };
 
   const onChange = (e) => {
@@ -74,6 +131,9 @@ const Faculty = () => {
             onChange={onChange}
           />
         ))}
+        <button className='submitButton' type='button' onClick={web3Handler}>
+          Connect the account
+        </button>
         <button className='submitButton'>Register as a Faculty</button>
       </form>
     </div>

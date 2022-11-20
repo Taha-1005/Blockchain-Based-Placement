@@ -4,16 +4,16 @@ import "hardhat/console.sol";
 
 contract Placement {
     struct Student {
-        string rollno;
-        address payable student;
-        string name;
+        string rollno; //0
+        address payable student; //1
+        string name; //2
         string password; // hash value
-        string[1] ppi;
-        string[1] spi;
+        string[1] ppi; //4
+        string[1] spi;// 5
         // string percentage10;
-        string percentage12;
-        uint256 backLogs;
-        string resume;
+        string percentage12; //6
+        uint256 backLogs;// 7
+        string resume; //8
         bool isPlaced;
         bool isInProgress;
         uint companyId;
@@ -32,9 +32,8 @@ contract Placement {
         string[] finalSelectedStudents;
         string[] registeredStudents;
         // elgiblity criterion
-        uint256 minBackLogs;
+        uint256 maxBackLogs;
         string minPPI;
-        uint256 minStudents;
         string status;
 
         // inProgress -> no more registration
@@ -90,13 +89,14 @@ contract Placement {
         string memory _percentage12,
         uint256 _backLogs
     ) public {
-        require(!doesAddressExists(payable(msg.sender)), "___Please use another address___");
+        // require(!doesAddressExists(payable(msg.sender)), "___Please use another address___");
 
-        require(compare(students[_rollno].rollno,""),"___Student already Registered___");
+        // require(compare(students[_rollno].rollno,""),"___Student already Registered___");
         totalStudents++;
         students[_rollno] = Student(
             _rollno,
             payable(msg.sender),
+            // msg.sender,
             _name,
             _password,
             _ppi,
@@ -111,9 +111,25 @@ contract Placement {
             2, // 2 updates available
             "notApplied"
         );
+        //  string rollno; //0
+        // address payable student; //1
+        // string name; //2
+        // string password; // hash value
+        // string[1] ppi; //4
+        // string[1] spi;// 5
+        // // string percentage10;
+        // string percentage12; //6
+        // uint256 backLogs;// 7
+        // string resume; //8
+        // bool isPlaced;
+        // bool isInProgress;
+        // uint companyId;
+        // uint256 updateLeft;
+        // string LORStatus;
 
         studentAddress[msg.sender]=true;
         console.log("Student count: ",totalStudents);
+        console.log("Student ppi: ",totalStudents);
 
     }
 
@@ -163,9 +179,9 @@ contract Placement {
         uint256 _category,
         string memory _ctc,
         string[] memory _location,
-        uint256 _minBackLogs,
-        string memory _minPPI,
-        uint256 _minStudents
+        uint256 _maxBackLogs,
+        string memory _minPPI
+    
     ) public {
         require(!doesAddressExists(payable(msg.sender)), "___Please use another address___");
 
@@ -181,9 +197,8 @@ contract Placement {
             _location,
             emptyArr,
             emptyArr,
-            _minBackLogs,
+            _maxBackLogs,
             _minPPI,
-            _minStudents,
             "closed"
         );
         companyAddress[msg.sender] = true;
@@ -232,6 +247,7 @@ contract Placement {
             _password,
             _branch
         );
+        facultyAddress[msg.sender]=true;
     }
 
       // faculty registered
@@ -328,7 +344,7 @@ contract Placement {
             // back log criterion
             if (
                 students[_studentRollno].backLogs >
-                companies[_companyId].minBackLogs
+                companies[_companyId].maxBackLogs
             ) return false;
 
             // ppi criterion todo

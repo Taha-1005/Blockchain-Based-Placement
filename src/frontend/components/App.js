@@ -49,7 +49,7 @@ function App() {
       await web3Handler()
     })
     loadContracts(signer)
-    console.log(account)
+    console.log("Acc :",account)
   }
   const loadContracts = async (signer) => {
     console.log("in load Contract")
@@ -67,10 +67,10 @@ function App() {
         <Route path='/register' element={<Register />}>
           <Route index element={<Student web3Handler={web3Handler} account={account} placement={ placement}  provider={provider} />} />
           <Route path='student' element={<Student web3Handler={web3Handler} account={account} placement={placement}  provider={provider} />} />
-          <Route path='faculty' element={<Faculty />} />
-          <Route path='company' element={<Company />} />
+          <Route path='faculty' element={<Faculty web3Handler={web3Handler} account={account} placement={placement} provider={provider} />} />
+          <Route path='company' element={<Company web3Handler={web3Handler} account={account} placement={placement} provider={provider} />} />
         </Route>
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Login web3Handler={web3Handler} account={account} placement={placement} />} />
         <Route path='/student-home' element={<StudentHome />}>
           <Route index element={<ApplyInCompany />} />
           <Route path='company' element={<ApplyInCompany />} />

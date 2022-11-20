@@ -34,8 +34,8 @@ const Student = ({ web3Handler, account, placement, provider }) => {
       required: true,
     },
     {
-      id: 'fullNmae',
-      name: 'fullNmae',
+      id: 'fullName',
+      name: 'fullName',
       type: 'text',
       placeholder: 'Full Name',
       errorMessage: 'Name should only consist of letters and only three names.',
@@ -129,22 +129,24 @@ const Student = ({ web3Handler, account, placement, provider }) => {
       let txn;
       // let backlog = parseInt(student.backlogs.toString(), 10);
       // console.log(backlog, typeof (backlog));
-      let _ppi=[student.ppi.toString()];
+      console.log("In handle submit", student);
+      
+      let _ppi = [student.ppi.toString()];
       console.log(_ppi, typeof (_ppi));
       let _spi = [student.spi.toString()];
       console.log(_spi, typeof (_spi));
+      // let _name = student.fullName.toString();
+      // console.log("Full name ", student.fullName, student.fullName.toString(), _name);
       try {
         txn = await placement.registerStudent(
           student.rollNumber.toString(),
           student.fullName.toString(),
           student.password.toString(),
-          // student.ppi.toString(),
           _ppi,
           _spi,
-          // student.spi.toString(),
           //  _percentage10,
           student.twelthPercentage.toString(),
-          parseInt(student.backlogs.toString(),10)
+          parseInt(student.backlogs.toString(), 10)
         );
         let cid;
         // wait for transaction
@@ -153,22 +155,21 @@ const Student = ({ web3Handler, account, placement, provider }) => {
         provider
           .waitForTransaction(txn.hash)
           .then(async function (txn) {
-            console.log('Transaction Mined: ' + txn.hash);
-            console.log(txn);
+            console.log('Transaction Mined: ' + txn);
             cid = await placement.totalStudents();
             cid = parseInt(cid.toHexString(), 16);
+            // navigate('/login');
             swal(
               'Hurray!!',
               'You are registered successfully!',
               'success'
             );
-            navigate('/login');
             let tot = await placement.totalStudents();
             console.log("Total studs ", tot);
 
-            let address = await placement.students(student.rollNumber.toString());
-            console.log(address, typeof cid);
-            console.log('Address', address.student, typeof cid);
+            // let address = await placement.students(student.rollNumber.toString());
+            // console.log("Student details", address);
+            // console.log('Address', address.ppi[0],address.spi[0]);
           });
       } catch (err) {
         // let x = err.data.message.toString();
@@ -194,7 +195,27 @@ const Student = ({ web3Handler, account, placement, provider }) => {
   };
 
   console.log(student);
-
+  const checkCust = async (e) => {
+    console.log('in check cist ..', placement);
+    // try {
+    let customerId = await placement.totalStudents();
+    console.log('total studs  ', customerId, student.rollNumber[0]);
+    let address1 = await placement.students(student.rollNumber[0].toString());
+    let _ppi1 = await placement.getPPI(address1.rollno);
+    console.log("Student details", address1.student);
+    console.log("Name ", address1.name);
+    console.log("Roll no ", address1.rollno);
+    console.log("Password ", address1.password);
+    console.log('12 %', address1.percentage12);
+    console.log('ppi %', _ppi1);
+    console.log('spi %', await placement.getSPI(address1.rollno));
+    // console.log( /address1.ppi[0], address1.ppi(0));
+    //,address.ppi[0], address.spi[0]);
+    // } catch (err) {
+    // console.log(err);
+    // console.log("Error in registering: ", extractErrorCode(err.toString()));
+    // }
+  };
   return (
     <div className='divForm'>
       <form onSubmit={handleSubmit} className='registrationForm'>
@@ -211,6 +232,9 @@ const Student = ({ web3Handler, account, placement, provider }) => {
           Connect the account
         </button>
         <button className='submitButton'>Register as a student</button>
+        <button className='submitButton' type='button' onClick={checkCust}>
+          Find My Details
+        </button>
       </form>
     </div>
   );

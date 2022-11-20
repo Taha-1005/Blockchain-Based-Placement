@@ -114,6 +114,7 @@ const Login = ({ web3Handler, account, placement }) => {
 
   return (
     <div>
+      <body className='body3'>
       <div className='container'>
         <div className='sign-up'>
           <h1 className='heading'>
@@ -141,6 +142,7 @@ const Login = ({ web3Handler, account, placement }) => {
         </div>
         <div className='text-container'></div>
       </div>
+      </body>
     </div>
   );
 };

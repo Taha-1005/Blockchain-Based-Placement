@@ -7,7 +7,7 @@ const Welcome = () => {
 
   return (
     <div>
-      <body>
+      <body className='body2'>
         <header>
           <div className='wrapper'>
             <div className='logo'>

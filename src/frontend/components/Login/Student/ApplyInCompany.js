@@ -4,20 +4,6 @@ import CompanyCard from './CompanyCard';
 const ApplyInCompany = ({ placement }) => {
   const [loading, setLoading] = useState(true);
   const [companies, setCompanies] = useState([]);
-  const [company, setCompany] = useState({
-    eligibleBranches: [],
-    name: '',
-    ctc: '',
-    onlyInternship: '',
-    onlyJob: '',
-    internshipAndJob: '',
-    linkToWebsite: '',
-    location: [],
-    category: '',
-    minBacklogs: '',
-    minPpi: '',
-    seatsAvailable: '',
-  });
 
   const mockData = [
     {

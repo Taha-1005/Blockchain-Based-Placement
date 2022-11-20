@@ -81,7 +81,7 @@ const Faculty = ({ web3Handler, account, placement, provider }) => {
             console.log(txn);
             fid = await placement.totalStudents();
             fid = parseInt(fid.toHexString(), 16);
-            // navigate('/login');
+            navigate('/login');
             swal(
               'Hurray!!',
               'You are registered successfully!  \n Kindly remeber your id: ' +

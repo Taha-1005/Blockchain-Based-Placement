@@ -23,12 +23,12 @@ const Login = ({ web3Handler, account, placement }) => {
     return /[a-zA-Z]/.test(str);
   }
   const loginUser = async () => {
-
     console.log('In login');
     if (account != null) {
       let isStudent, isFaculty, isCompany, txn;
       try {
         console.log(user.id, user.password, parseInt(user.id[0].toString(), 10) ,typeof(parseInt(user.id[0].toString(),10)));
+        
         // faculty or company
         if (!containsAnyLetters(user.id[0].toString())) {
           console.log("Faculty or company")
@@ -36,22 +36,59 @@ const Login = ({ web3Handler, account, placement }) => {
           console.log('Faculty ', isFaculty);
 
           if (isFaculty) {
-            txn = await placement.loginCommittee(user.id, user.password);
+            try{
+              txn = await placement.loginFaculty(parseInt(user.id[0], 10), user.password[0]);
+              console.log("Faculty login done ...txn");
+              let _loggedIn = await placement.facultyLoggedIn(account);
+              console.log(_loggedIn);
+              swal("Hurray", "Logged in Successfully", "success");
+              navigate('/faculty-home');
+
+            } catch (err) {
+              let x = JSON.stringify(err);
+              console.log('Error: ', err, "to string", x);
+              const errMsg = extractErrorCode(x);
+              console.log('Error in logging in: ', errMsg);
+              swal('Oops!', errMsg, 'error');
+
+            }
+
 
           } else {
-            isCompany = await placement.companyAddress();
+            isCompany = await placement.companyAddress(account);
+            // user is company
             if (isCompany) {
-              console.log("Is company ");
-              txn = await placement.loginComapny();
-            } else {
+              console.log("Is company ",);
+              try {
+                txn = await placement.loginCompany(parseInt(user.id[0], 10), user.password[0]);
+                console.log("Company login done ...txn");
+                let _loggedIn = await placement.companyLoggedIn(account);
+                console.log(_loggedIn);
+                swal("Hurray", "Logged in Successfully", "success");
+                navigate('/company-home');
+
+              } catch (err) {
+                let x = JSON.stringify(err);
+
+                console.log('Error: ', err, "to string", x);
+                const errMsg = extractErrorCode(x);
+                console.log('Error in logging in: ', errMsg);
+                swal('Oops!', errMsg, 'error');
+
+              }
+
+            } //not registered
+            else {
               swal(
                 'Oops!',
-                'You are not Registered in our portal. Kindly Register to Login ',
+                'You are not Registered with this account in our portal.\n Kindly check the account or Register first',
                 'error'
               );
             }
           }
-        } else {
+        }
+        // user id is alphanumeric
+        else {
           isStudent = await placement.studentAddress(account);
           console.log("isStudent: ", isStudent);
           if (isStudent) {
@@ -62,7 +99,7 @@ const Login = ({ web3Handler, account, placement }) => {
               let temp = await placement.studentLoggedIn(account);
               console.log(temp);
               swal("Hurray", "Logged in Successfully", "success");
-              navigate('/');
+              navigate('/student-home');
 
             } catch (err) {
               // let x = err.message.toString();
@@ -74,25 +111,13 @@ const Login = ({ web3Handler, account, placement }) => {
 
             }
           } else {
-            isFaculty = await placement.facultyAddress(account);
-            console.log('Faculty ', isFaculty);
+            swal(
+              'Oops!',
+              // 'You are not Registered in our portal. Kindly Register to Login ',
+              'You are not Registered with this account',
 
-            if (isFaculty) {
-              txn = await placement.loginCommittee(user.id, user.password);
-
-            } else {
-              isCompany = await placement.companyAddress();
-              if (isCompany) {
-                console.log("Is company ");
-                txn = await placement.loginComapny();
-              } else {
-                swal(
-                  'Oops!',
-                  'You are not Registered in our portal. Kindly Register to Login ',
-                  'error'
-                );
-              }
-            }
+              'error'
+            );
           }
         }
       } catch (err) {

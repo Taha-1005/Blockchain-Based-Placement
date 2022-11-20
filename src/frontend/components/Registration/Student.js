@@ -158,7 +158,7 @@ const Student = ({ web3Handler, account, placement, provider }) => {
             console.log('Transaction Mined: ' + txn);
             cid = await placement.totalStudents();
             cid = parseInt(cid.toHexString(), 16);
-            // navigate('/login');
+            navigate('/login');
             swal(
               'Hurray!!',
               'You are registered successfully!',

@@ -3,12 +3,38 @@
   padding: 1.5rem;
   box-shadow: 0 0 28px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  background-color: black;
+  background-color: white;
+  color: black;
   cursor: pointer;
 }
 
 .companyCard:hover {
   transform: scale(1.1);
+  background-color: rgb(105, 152, 139);
+  color: white;
+}
+
+.companyCard:before {
+  content: attr(data-hover);
+  visibility: hidden;
+  opacity: 0;
+  width: 140px;
+  background-color: inherit;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  transition: opacity 2s ease-in-out;
+
+  position: relative;
+  z-index: 1;
+  left: 0;
+  top: 110%;
+}
+
+.companyCard:hover:before {
+  opacity: 1;
+  visibility: visible;
 }
 
 .post {
@@ -23,6 +49,8 @@
 
 .cardBody {
   display: flex;
+  justify-content: space-between;
+  align-items: stretch;
 }
 
 .jobType {
@@ -38,9 +66,11 @@
 }
 
 .link {
-  color: #FFF;
-
+  color: #fff;
+  cursor: initial;
 }
-.link:hover {
-  color: green;
+
+.locations{
+  width: 50px;
+  word-wrap: normal;
 }

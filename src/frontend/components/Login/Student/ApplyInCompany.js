@@ -19,53 +19,56 @@ const ApplyInCompany = ({ placement }) => {
     seatsAvailable: '',
   });
 
-  // const companies = [
-  //   {
-  //     eligibleBranches: ['CSE', 'EE'],
-  //     name: 'A',
-  //     ctc: 8.8,
-  //     onlyInternship: '0',
-  //     onlyJob: '0',
-  //     internshipAndJob: '1',
-  //     linkToWebsite: 'a.com',
-  //     location: ['PAN INDIA'],
-  //     category: 'A',
-  //     minBacklogs: '0',
-  //     minPpi: '7.5',
-  //     seatsAvailable: '',
-  //     post: 'Software Engineer',
-  //   },
-  //   {
-  //     eligibleBranches: ['ME', 'EE'],
-  //     name: 'B',
-  //     ctc: 8.5,
-  //     onlyInternship: '0',
-  //     onlyJob: '1',
-  //     internshipAndJob: '0',
-  //     linkToWebsite: 'b.com',
-  //     location: ['Surat', 'Banglore'],
-  //     category: 'A',
-  //     minBacklogs: '0',
-  //     minPpi: '7.8',
-  //     seatsAvailable: '10',
-  //     post: 'Software Engineer',
-  //   },
-  //   {
-  //     eligibleBranches: ['CSE', 'CH'],
-  //     name: 'C',
-  //     ctc: 11,
-  //     onlyInternship: '1',
-  //     onlyJob: '0',
-  //     internshipAndJob: '0',
-  //     linkToWebsite: 'c.com',
-  //     location: ['Rajkot', 'Banglore', 'Mumbai', 'Hyderabad'],
-  //     category: 'A',
-  //     minBacklogs: '0',
-  //     minPpi: '7.5',
-  //     seatsAvailable: '',
-  //     post: 'Software Engineer',
-  //   },
-  // ];
+  const mockData = [
+    {
+      eligibleBranches: ['CSE', 'EE'],
+      name: 'A',
+      ctc: 8.8,
+      onlyInternship: '0',
+      onlyJob: '0',
+      internshipAndJob: '1',
+      linkToWebsite: 'a.com',
+      location: ['PAN INDIA'],
+      category: 'A',
+      minBacklogs: '0',
+      minPpi: '7.5',
+      seatsAvailable: '',
+      post: 'Software Engineer',
+      desc: 'This is our descripion',
+    },
+    {
+      eligibleBranches: ['ME', 'EE'],
+      name: 'B',
+      ctc: 8.5,
+      onlyInternship: '0',
+      onlyJob: '1',
+      internshipAndJob: '0',
+      linkToWebsite: 'b.com',
+      location: ['Surat', 'Banglore'],
+      category: 'A',
+      minBacklogs: '0',
+      minPpi: '7.8',
+      seatsAvailable: '10',
+      post: 'Software Engineer',
+      desc: 'This is our descripion',
+    },
+    {
+      eligibleBranches: ['CSE', 'CH'],
+      name: 'C',
+      ctc: 11,
+      onlyInternship: '1',
+      onlyJob: '0',
+      internshipAndJob: '0',
+      linkToWebsite: 'c.com',
+      location: ['Rajkot', 'Banglore', 'Mumbai', 'Hyderabad'],
+      category: 'A',
+      minBacklogs: '0',
+      minPpi: '7.5',
+      seatsAvailable: '',
+      post: 'Software Engineer',
+      desc: 'This is our descripion',
+    },
+  ];
 
   const listRegisteredCompanies = async () => {
     let companiesData = [];
@@ -115,11 +118,15 @@ const ApplyInCompany = ({ placement }) => {
   return (
     <div className='applyCompany'>
       {
-        // {company.map((comp) => (
+        // mockData.map((comp) => (
+        // <CompanyCard companyData={comp} key={comp.name} />
+        // ))
       }
-      {companies.map((comp) => (
-        <CompanyCard companyData={comp} key={comp.name} />
-      ))}
+      {
+          companies.map((comp) => (
+          <CompanyCard companyData={comp} key={comp.name} />
+        ))
+      }
     </div>
   );
 };

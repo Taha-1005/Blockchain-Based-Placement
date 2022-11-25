@@ -1,14 +1,96 @@
-.header {
-  font-weight: 800;
-  font-size: 1.5rem;
+.body5{
+  background: #282828;
+  font-family: tahoma;
+  text-align: justify;
+  overflow: hidden;
+  /* margin:1rem 1rem; */
+  
 }
 
-.post {
-  font-weight: 800;
-  font-size: 1rem;
+#about{
+  padding-top: 98px;
+  padding-bottom: 200px;
 }
-.title {
+
+#about .triangle-right{
+  margin-top: 95px;
+  width: 0;
+  height: 0;
+  border-top: 259px solid transparent;
+  border-left: 470px solid #d6c6b2;
+  border-bottom: 259px solid transparent;
+  
+  
+}
+
+#about .triangle-right img{
+  position: absolute;
+  left: -1px;
+  top: 81px;
+  width: 74%;
+ 
+}
+
+.fa-play{
+  font-size: 100px;
+  
+}
+
+
+#about .p-first{
+  margin-bottom: 30px;
+  margin-right: 30px;
+}
+
+
+#about h2{
+  margin-bottom: 47px;
+  margin-top: 12px;
+  
+}
+
+
+#about .social-link-text{
+  margin-top: 50px;
+  margin-bottom: 25px;			
+  
+}
+
+#about .about-link{
+  padding-left: 0px;
+}
+
+#about .about-link li{
+  display: inline-block;
+}
+
+#about .about-link li a i{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  line-height: 50px;
   text-align: center;
-  font-weight: 800;
-  font-size: 4rem;
+  border: 1px solid #d6c6b2;
+  margin-right: 10px;
+  font-size: 22px;
+  color: #d6c6b2;
+  transition: all .3s;
+  
 }
+
+
+#about .about-link li a i:hover{
+  color: #222222;
+  background: #d6c6b2;
+  border-color: #d6c6b2;
+  
+}
+
+
+#about .about-img{
+  position: relative;
+  
+}
+
+/* .details {
+} */

@@ -46,6 +46,7 @@ function Card(props) {
   return (
     <div className='card'>
       <body className='body1'>
+      
         <div className='card__body'>
           <img className='card__image' src={props.img} />
           <h2 className='card__title'>{props.title}</h2>

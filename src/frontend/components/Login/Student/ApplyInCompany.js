@@ -8,7 +8,7 @@ const ApplyInCompany = ({ placement }) => {
   const mockData = [
     {
       eligibleBranches: ['CSE', 'EE'],
-      name: 'A',
+      name: 'Samsung',
       ctc: 8.8,
       onlyInternship: '0',
       onlyJob: '0',
@@ -24,7 +24,7 @@ const ApplyInCompany = ({ placement }) => {
     },
     {
       eligibleBranches: ['ME', 'EE'],
-      name: 'B',
+      name: 'ZS Associates',
       ctc: 8.5,
       onlyInternship: '0',
       onlyJob: '1',
@@ -40,7 +40,7 @@ const ApplyInCompany = ({ placement }) => {
     },
     {
       eligibleBranches: ['CSE', 'CH'],
-      name: 'C',
+      name: 'Taha Studios',
       ctc: 11,
       onlyInternship: '1',
       onlyJob: '0',
@@ -104,14 +104,14 @@ const ApplyInCompany = ({ placement }) => {
   return (
     <div className='applyCompany'>
       {
-        // mockData.map((comp) => (
-        // <CompanyCard companyData={comp} key={comp.name} />
-        // ))
+        mockData.map((comp) => (
+        <CompanyCard companyData={comp} key={comp.name} />
+        ))
       }
       {
-          companies.map((comp) => (
-          <CompanyCard companyData={comp} key={comp.name} />
-        ))
+        //   companies.map((comp) => (
+        //   <CompanyCard companyData={comp} key={comp.name} />
+        // ))
       }
     </div>
   );

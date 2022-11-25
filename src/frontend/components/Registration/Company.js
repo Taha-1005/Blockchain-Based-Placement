@@ -26,7 +26,7 @@ const Company = ({ web3Handler, account, placement, provider }) => {
       name: 'name',
       type: 'text',
       placeholder: 'Company Name',
-      errorMessage: 'Enter valid Compnay Name',
+      errorMessage: 'Enter valid Company Name',
       label: 'Company Name',
       pattern: '[a-zA-Z., ]+',
       required: true,

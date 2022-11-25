@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import './ApplyForLor.css';
 
 const ApplyForLor = () => {
   const mockData = [
@@ -22,7 +24,9 @@ const ApplyForLor = () => {
   return (
     <div>
       ApplyForLor
-      <FacultyCard />
+      {mockData.map((faculty) => (
+        <FacultyCard faculty key={faculty.name} />
+      ))}
     </div>
   );
 };
@@ -31,10 +35,16 @@ export default ApplyForLor;
 
 function FacultyCard(props) {
   return (
-    <div className='facultyCard'>
-      <div className='title'>props.name</div>
-      <div className='branch'>props.branch</div>
-      <div className='wesite'>props.linkToWebsite</div>
-    </div>
+    <Link
+      className='link'
+      to='/student-home/company-details'
+      state={{ data: props }}
+    >
+      <div className='facultyCard'>
+        <div className='title'>props.name</div>
+        <div className='branch'>props.branch</div>
+        <div className='wesite'>props.linkToWebsite</div>
+      </div>
+    </Link>
   );
 }

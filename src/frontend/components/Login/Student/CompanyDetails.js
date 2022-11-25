@@ -28,6 +28,14 @@ const CompanyDetails = () => {
          <p className="p-first text-white">
            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet nesciunt sint, esse iure eius voluptatibus perspiciatis sequi fuga magni perferendis beatae ratione, nam culpa veritatis dolore sunt ut minus qui Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum ea delectus doloremque adip.
          </p>
+
+         {/* <h2 className="color-3"><b>Category</b> </h2> */}
+         <p className="p-first text-white"><b>Category : </b>{companyData.category}</p> 
+         <p className="p-first text-white"><b>CTC : </b>{companyData.ctc} lakhs</p>
+         <p className="p-first text-white"><b>Role : </b>{companyData.post}</p> 
+         <p className="p-first text-white"><b>CGPA : </b> Greater than {companyData.minPpi}</p>
+
+
          {/* <p className="text-white">
            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores pariatur animi sunt, assumenda dicta distinctio nostrum nisi, ullam dignissimos dolor!
          </p> */}

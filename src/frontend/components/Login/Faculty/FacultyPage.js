@@ -3,6 +3,13 @@ import './Facultyhome.css';
 
 function FacultyPage() {
   return (
+    <div>
+    <div className="topnav">
+    <a className="active" href="#home">Home</a>
+    <a href="#Status">Status</a>
+    <a href="#Pending">Pending</a>
+    <a href="#account">Account</a>
+  </div>
     <div className='wrapper1'>
       <Card
         title='Meet Vora'
@@ -39,12 +46,14 @@ function FacultyPage() {
         img='https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
       />
     </div>
+    </div>
   );
 }
 
 function Card(props) {
   return (
     <div className='card'>
+      
       <body className='body1'>
       
         <div className='card__body'>

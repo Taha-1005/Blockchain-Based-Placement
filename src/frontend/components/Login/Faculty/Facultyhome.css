@@ -12,7 +12,7 @@
 }
 
 .topnav {
-  background-color: rgb(60, 11, 103);
+  background-color: rgb(32, 2, 58);
   overflow: hidden;
 }
 
@@ -52,7 +52,7 @@
   flex-direction: column;
   cursor: pointer;
   transition: transform 200ms ease-in;
-  box-shadow: 2px 6px 18px rgba(66, 57, 238, 0.3);
+  box-shadow: 2px 6px 18px rgba(91, 83, 243, 0.3);
   margin-right: 0.1rem;
 }
 
@@ -68,6 +68,8 @@
 
 .card .card__description {
   padding: 0 1rem;
+  color:black;
+  /* background-color:black; */
 }
 
 .card .card_btn1 {

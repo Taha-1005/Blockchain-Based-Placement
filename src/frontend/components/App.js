@@ -20,6 +20,7 @@ import FacultyPage from './Login/Faculty/FacultyPage';
 import PlacementAddress from '../contractsData/Placement-address.json';
 import PlacementAbi from '../contractsData/Placement.json';
 import CompanyDetails from './Login/Student/CompanyDetails';
+import ApplyToFaculty from './Login/Student/ApplyToFaculty';
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -144,6 +145,7 @@ function App() {
             path='company-details'
             element={<CompanyDetails placement={placement} />}
           />
+          <Route path='apply-faculty' element={<ApplyToFaculty />} />
         </Route>
         <Route
           path='/faculty-home'

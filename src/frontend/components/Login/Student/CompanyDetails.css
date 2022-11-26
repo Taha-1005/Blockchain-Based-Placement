@@ -8,12 +8,13 @@
 }
 
 #about{
-  padding-top: 98px;
+  /* padding-top: 90px; */
   padding-bottom: 200px;
 }
 
 #about .triangle-right{
   margin-top: 95px;
+  margin-left: 80px;
   width: 0;
   height: 0;
   border-top: 259px solid transparent;
@@ -24,6 +25,7 @@
 }
 
 #about .triangle-right img{
+  margin-left: 80px;
   position: absolute;
   left: -1px;
   top: 81px;
@@ -98,6 +100,7 @@
 }
 
 #about .about-img .man{
+  margin-left: 50px;
   position: absolute;
   bottom: 161px;
   top: 12px;

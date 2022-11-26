@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './ApplyForLor.css';
+import { useState, useEffect } from 'react';
 
-const ApplyForLor = () => {
+const ApplyForLor = ({placement}) => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  const [faculties, setFaculties] = useState([]);
 
   const applyPage = (faculty) => {
     navigate('/student-home/apply-faculty', {
@@ -35,10 +39,43 @@ const ApplyForLor = () => {
       linkToWebsite: 'https://d.com',
     },
   ];
+  const listRegisteredFaculties = async () => {
+    let facultiesData = [];
+    console.log('lisiting faculties ', placement);
+    const totalFaculties = await placement.totalFaculties();
 
+    for (let index = 1; index <= totalFaculties; index++) {
+      const _faculty = await placement.faculties(index);
+      // if (_faculty.isListed) {
+      console.log('Faculty registered ', _faculty.name);
+      console.log('Faculty wallet ', _faculty.faculty);
+      console.log(_faculty.branch);
+
+      // get total price of _faculty (_faculty price + fee)
+      // const totalPrice = await placement.getTotPrice(_faculty._facultyId)
+      console.log();
+      facultiesData.push({
+        name: "Prof. "+_faculty.name,
+        branch: [_faculty.branch],
+        linkToWebsite: 'https://a.com'
+      });
+    }
+
+    setLoading(false);
+    setFaculties(facultiesData);
+  }
+
+  useEffect(() => {
+    listRegisteredFaculties();
+  }, []);
+  if (loading) return (
+    <main style={{ padding: "1rem 0" }}>
+      <h2>Loading....</h2>
+    </main>
+  )
   return (
     <div>
-      {mockData.map((faculty) => (
+      {faculties.map((faculty) => (
         <FacultyCard
           key={faculty.name}
           {...faculty}

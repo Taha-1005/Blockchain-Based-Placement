@@ -79,7 +79,7 @@ const Faculty = ({ web3Handler, account, placement, provider }) => {
           .then(async function (txn) {
             console.log('Transaction Mined: ' + txn.hash);
             console.log(txn);
-            fid = await placement.totalStudents();
+            fid = await placement.totalFaculties();
             fid = parseInt(fid.toHexString(), 16);
             navigate('/login');
             swal(

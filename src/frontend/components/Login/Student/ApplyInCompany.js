@@ -96,23 +96,19 @@ const ApplyInCompany = ({ placement }) => {
   useEffect(() => {
     listRegisteredCompanies();
   }, []);
-  // if (loading) return (
-  //   <main style={{ padding: "1rem 0" }}>
-  //     <h2>Loading....</h2>
-  //   </main>
-  // )
+  if (loading) return (
+    <main style={{ padding: "1rem 0" }}>
+      <h2>Loading....</h2>
+    </main>
+  )
   return (
     <div className='applyCompany'>
       {
-        mockData.map((comp) => (
+        companies.map((comp) => (
         <CompanyCard companyData={comp} key={comp.name} />
         ))
       }
-      {
-        //   companies.map((comp) => (
-        //   <CompanyCard companyData={comp} key={comp.name} />
-        // ))
-      }
+     
     </div>
   );
 };

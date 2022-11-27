@@ -24,12 +24,12 @@ contract Placement {
     struct Company {
         string name;
         address payable company;
-        // uint companyId;
         string password;
         string description;
         uint256 category; // 1-> A+ 2-> A 3-> B
         string ctc;
         string location;
+        string branches;
         string[] finalSelectedStudents;
         string[] registeredStudents;
         // elgiblity criterion
@@ -165,7 +165,8 @@ contract Placement {
         string memory _ctc,
         string memory _location,
         uint256 _maxBackLogs,
-        string memory _minPPI
+        string memory _minPPI,
+        string memory _branches
     
     ) public {
         require(!doesAddressExists(payable(msg.sender)), "___Please use another address___");
@@ -180,6 +181,7 @@ contract Placement {
             _category,
             _ctc,
             _location,
+            _branches,
             emptyArr,
             emptyArr,
             _maxBackLogs,
@@ -187,7 +189,7 @@ contract Placement {
             "closed"
         );
         companyAddress[msg.sender] = true;
-        console.log("Compnay Id: ", totalCompanies);
+        console.log("Company Id: ", totalCompanies);
 
     }
 
@@ -332,11 +334,15 @@ contract Placement {
                 companies[_companyId].maxBackLogs
             ) return false;
 
-            // ppi criterion todo
+            // ppi criterion todo - in frontendt
             // if(students[_studentRollno].ppi[7] < companies[_companyId].minPPI) return false;
+            // if(isPPIgreater(students[_studentRollno].ppi[0],companies[_companyId].minPPI))return true;
+            // return false;
+            return true;
         }
         return true;
     }
+   
    function getPPI(string memory _studentRollno) public view returns (string memory) {
         return students[_studentRollno].ppi[0];
     }

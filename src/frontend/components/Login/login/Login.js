@@ -63,16 +63,21 @@ const Login = ({ web3Handler, account, placement, provider }) => {
             // user is company
             if (isCompany) {
               console.log('Is company ');
+              const _companyId = parseInt(user.id[0], 10);
               try {
                 txn = await placement.loginCompany(
-                  parseInt(user.id[0], 10),
+                  _companyId,
                   user.password[0]
                 );
-                console.log('Company login done ...txn');
+                console.log('Company login done ...txn',_companyId);
                 let _loggedIn = await placement.companyLoggedIn(account);
                 console.log(_loggedIn);
                 swal('Hurray', 'Logged in Successfully', 'success');
-                navigate('/company-home');
+                navigate('/company-home', {
+                  state: {
+                    companyId:_companyId
+                  }
+                });
               } catch (err) {
                 let x = JSON.stringify(err);
 

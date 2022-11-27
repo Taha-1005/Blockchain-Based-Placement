@@ -155,14 +155,14 @@ function App() {
           path='/faculty-home'
           element={<FacultyPage placement={placement} />}
         />
-        <Route path='/company-home' element={<CompanyHome />}>
-          <Route index element={<ControlRegistration />} />
+        <Route path='/company-home' element={<CompanyHome placement={placement} provider={provider} />}>
+          <Route index element={<ControlRegistration placement={placement} provider={provider} />} />
           <Route
             path='control-registration'
             element={<ControlRegistration />}
           />
-          <Route path='students-applied' element={<StudentsApplied />} />
-          <Route path='account' element={<CompanyAccount />} />
+          <Route path='students-applied' element={<StudentsApplied placement={placement} provider={provider} />} />
+          <Route path='account' element={<CompanyAccount placement={placement} provider={provider} />} />
         </Route>
       </Routes>
     </BrowserRouter>

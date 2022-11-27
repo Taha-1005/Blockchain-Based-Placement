@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import swal from 'sweetalert';
 import CompanyCard from './CompanyCard';
 
 const ApplyInCompany = ({ placement }) => {
@@ -59,6 +60,10 @@ const ApplyInCompany = ({ placement }) => {
   const listRegisteredCompanies = async () => {
     let companiesData = [];
     console.log('lisiting companies ', placement);
+    if (placement == null) {
+      swal("Oops", "Login again ", 'error');
+      return;
+    }
     const totalCompanies = await placement.totalCompanies();
 
     for (let index = 1; index <= totalCompanies; index++) {
@@ -74,18 +79,20 @@ const ApplyInCompany = ({ placement }) => {
       // const totalPrice = await placement.getTotPrice(_company._companyId)
       console.log();
       companiesData.push({
+        companyId:index,
         eligibleBranches: [],
         name: _company.name,
         ctc: _company.ctc,
-        onlyInternship: '',
-        onlyJob: '',
-        internshipAndJob: '',
-        linkToWebsite: '',
-        location: [],
-        category: _company.category,
+        // onlyInternship: '',
+        // onlyJob: '',
+        // internshipAndJob: '',
+        // linkToWebsite: '',
+        description:_company.description,
+        location: _company.location,
+        category: parseInt(_company.category.toHexString(), 16),
         minBacklogs: _company.maxBackLogs,
         minPpi: _company.minPPI,
-        seatsAvailable: '',
+        // seatsAvailable: '',
       });
       // }
     }
@@ -104,13 +111,15 @@ const ApplyInCompany = ({ placement }) => {
     );
   return (
     <div className='applyCompany'>
-      {companies.map((comp) => (
-        <CompanyCard companyData={comp} key={comp.name} />
-      ))}
       {
-        //   mockData.map((comp) => (
-        //   <CompanyCard companyData={comp} key={comp.name} />
-        // ))
+        companies.map((comp) => (
+        <CompanyCard companyData={comp} key={comp.name} />
+        ))
+      }
+      {
+          mockData.map((comp) => (
+          <CompanyCard companyData={comp} key={comp.name} />
+        ))
       }
     </div>
   );

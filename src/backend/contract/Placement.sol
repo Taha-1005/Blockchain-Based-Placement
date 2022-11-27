@@ -24,6 +24,7 @@ contract Placement {
     struct Company {
         string name;
         address payable company;
+        // uint companyId;
         string password;
         string description;
         uint256 category; // 1-> A+ 2-> A 3-> B
@@ -96,7 +97,6 @@ contract Placement {
         students[_rollno] = Student(
             _rollno,
             payable(msg.sender),
-            // msg.sender,
             _name,
             _password,
             _ppi,
@@ -111,21 +111,6 @@ contract Placement {
             2, // 2 updates available
             "notApplied"
         );
-        //  string rollno; //0
-        // address payable student; //1
-        // string name; //2
-        // string password; // hash value
-        // string[1] ppi; //4
-        // string[1] spi;// 5
-        // // string percentage10;
-        // string percentage12; //6
-        // uint256 backLogs;// 7
-        // string resume; //8
-        // bool isPlaced;
-        // bool isInProgress;
-        // uint companyId;
-        // uint256 updateLeft;
-        // string LORStatus;
 
         studentAddress[msg.sender]=true;
         console.log("Student count: ",totalStudents);
@@ -312,12 +297,12 @@ contract Placement {
         string memory _status = "openForRegistration";
 
         // has company started registeration
-        require(keccak256(abi.encodePacked(companies[_companyId].status)) == keccak256(abi.encodePacked(_status)), "Not Open for Registration :(");
+        require(keccak256(abi.encodePacked(companies[_companyId].status)) == keccak256(abi.encodePacked(_status)), "___Not Open for Registration :(___");
 
         // check eligiblity
         require(
             isEligible(_companyId, _studentRollno),
-            "___You are not eligible to apply for this comapny :(___"
+            "___You are not eligible to apply for this company :(___"
         );
 
         // registered student in company

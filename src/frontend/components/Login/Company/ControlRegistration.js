@@ -5,12 +5,14 @@ import '../../../Styles/ControlRegistrationStyle.css';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import extractErrorCode from '../../ErrorMessage';
 import CompanyDetails from '../Student/CompanyDetails';
+import { useState, useEffect } from 'react';
 
 const ControlRegistration = ({ placement,provider }) => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const companyId = state.companyId;
+  
   const handleStartRegistration = async (e) => {
+    const companyId = state.companyId;
     console.log("Placement ", placement);
     // if (JSON.stringify(placement).length==2) {
     //   swal('Oops', "Login again", 'error');
@@ -43,11 +45,12 @@ const ControlRegistration = ({ placement,provider }) => {
 
   const handleEndRegistration = async (e) => {
     console.log("Placement ", placement);
-    if (!placement) {
+    if (!placement.interface) {
       swal('Oops', "Login again", 'error');
       navigate("/login");
       return;
     }
+    const companyId = state.companyId;
 
     let txn;
 
@@ -71,7 +74,15 @@ const ControlRegistration = ({ placement,provider }) => {
       swal('Oops', err, 'error');
     }
   };
-
+  
+  useEffect(() => {
+    console.log(state);
+    if (!state) {
+      navigate('/login');
+      swal('Oops!', "Session expired", 'warning');
+      return;
+    } 
+  }, []);
   return (
     <div className='companyHomeBody'>
       <div className='innerBox'>

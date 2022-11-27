@@ -12,7 +12,13 @@ const StudentsApplied = ({ placement }) => {
   const listRegisteredStudents = async () => {
     const companyId = state.companyId;
     let studentsData = [];
-    // console.log('lisiting students ', placement, JSON.stringify(placement).length);
+    console.log('lisiting students ', placement);
+    console.log(!placement.interface);
+    if (!placement.interface) {
+      swal("Oops!", "Session expired... Don't referesh ", 'warning');
+      navigate('/login');
+      return;
+    }
 
     // if (JSON.stringify(placement).length == 2) {
     //   swal("Oops!", "Login again", 'warning');
@@ -46,8 +52,8 @@ const StudentsApplied = ({ placement }) => {
 
   useEffect(() => {
     if (!state) {
-      swal('Error', "login", 'error');
-      navigate('/login')
+      swal('Oops!', "Start Registeration or End to see the student list", 'error');
+      navigate('/company-home/control-registration')
     } else {
       listRegisteredStudents();
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, useNavigate } from 'react-router';
 import { createSearchParams, Link } from 'react-router-dom';
-import './CompanyCard.css';
+import '../../../Styles/CompanyCard.css';
 const CompanyCard = ({ companyData }) => {
   // console.log();
 

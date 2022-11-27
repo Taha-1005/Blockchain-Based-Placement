@@ -1,5 +1,5 @@
 import React from 'react';
-import './StudentNavBarStyle.css';
+import '../../../Styles/StudentNavBarStyle.css';
 import { NavLink, Outlet } from 'react-router-dom';
 
 const StudentNavBar = () => {

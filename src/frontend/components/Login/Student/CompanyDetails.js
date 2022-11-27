@@ -1,5 +1,5 @@
 import React from 'react';
-import './CompanyDetails.css';
+import '../../../Styles/CompanyDetails.css';
 import man from './about_man.jpg';
 import triangle from './about_tringle.png';
 

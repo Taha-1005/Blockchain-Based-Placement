@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './ApplyForLor.css';
+import '../../../Styles/ApplyForLor.css';
 import { useState, useEffect } from 'react';
 
-const ApplyForLor = ({placement}) => {
+const ApplyForLor = ({ placement }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
@@ -55,24 +55,25 @@ const ApplyForLor = ({placement}) => {
       // const totalPrice = await placement.getTotPrice(_faculty._facultyId)
       console.log();
       facultiesData.push({
-        name: "Prof. "+_faculty.name,
+        name: 'Prof. ' + _faculty.name,
         branch: [_faculty.branch],
-        linkToWebsite: 'https://a.com'
+        linkToWebsite: 'https://a.com',
       });
     }
 
     setLoading(false);
     setFaculties(facultiesData);
-  }
+  };
 
   useEffect(() => {
     listRegisteredFaculties();
   }, []);
-  if (loading) return (
-    <main style={{ padding: "1rem 0" }}>
-      <h2>Loading....</h2>
-    </main>
-  )
+  if (loading)
+    return (
+      <main style={{ padding: '1rem 0' }}>
+        <h2>Loading....</h2>
+      </main>
+    );
   return (
     <div>
       {faculties.map((faculty) => (

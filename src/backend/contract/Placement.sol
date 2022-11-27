@@ -270,10 +270,13 @@ contract Placement {
 
     // start company Application
     function startRegistration(uint _companyId) public {
+        // require(companies[_companyId].company==msg.sender,"Login to start registeration");
         companies[_companyId].status = "openForRegistration";
     }
 
     function endRegistration(uint _companyId) public {
+        // require(companies[_companyId].company==msg.sender,"Login to end registeration");
+
         companies[_companyId].status = "inProgress";
     }
 
@@ -289,6 +292,9 @@ contract Placement {
         return companies[_companyId].status;
     }
 
+    function getRegisteredStudents(uint _companyId) view public returns(string[] memory){
+        return companies[_companyId].registeredStudents;
+    }
     // Process
 
     // can only apply if they meet eligiblity criterion of the company

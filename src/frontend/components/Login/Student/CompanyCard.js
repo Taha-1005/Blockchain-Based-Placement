@@ -2,8 +2,8 @@ import React from 'react';
 import { Navigate, useNavigate } from 'react-router';
 import { createSearchParams, Link } from 'react-router-dom';
 import '../../../Styles/CompanyCard.css';
-const CompanyCard = ({ companyData }) => {
-  console.log("comp data, ",companyData.location,companyData.name);
+const CompanyCard = ({ companyData,studentData }) => {
+  console.log("comp data, ",companyData.location,companyData.name,studentData);
 
   const GetLocation = () => {
     return <div className='locations'>{companyData.location}</div>;
@@ -13,7 +13,7 @@ const CompanyCard = ({ companyData }) => {
     <Link
       className='link'
       to='/student-home/company-details'
-      state={{ data: companyData }}
+      state={{ data: companyData, studentId:studentData}}
     >
       <div className='companyCard' data-hover='Click to Apply'>
         <div className='post'>{companyData.post}</div>

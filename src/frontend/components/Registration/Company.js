@@ -16,6 +16,7 @@ const Company = ({ web3Handler, account, placement, provider }) => {
     category: '',
     maxBackLogs: '',
     minPPI: '',
+    branches:'',
     password: '',
     confirmPassword: '',
   });
@@ -97,19 +98,28 @@ const Company = ({ web3Handler, account, placement, provider }) => {
       max: '10',
       placeholder: 'Min PPI criteria for shortlisting',
       errorMessage: 'Enter valid PPI',
-      label: '',
+      label: 'PPI',
       required: true,
     },
-   
+    {
+      id: 'branches',
+      name: 'branches',
+      type: 'text',
+      placeholder: 'Enter eligible branches ',
+      errorMessage: 'Enter comma separted branches',
+      label: 'Eligible Branches',
+      pattern: '[a-zA-Z, ]+',
+      required: true,
+    },
     {
       id: 'password',
       name: 'password',
       type: 'password',
-      placeholder: 'Paswsword',
+      placeholder: 'Password',
       errorMessage:
         'The password should be 8 to 20 characters and should have atleast 1 number, 1 special character, 1 alphabet',
       pattern: '^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[@$#%]).{8,20}$',
-      label: 'Paswsword',
+      label: 'Password',
       required: true,
     },
     {
@@ -132,7 +142,8 @@ const Company = ({ web3Handler, account, placement, provider }) => {
     console.log("Company category : ", company.category[0], typeof (company.category[0]));
     console.log("Company location : ", company.location[0], typeof (company.location[0]));
     console.log("Company maxBackLogs: ", parseInt(company.maxBackLogs[0],10), typeof(parseInt(company.maxBackLogs[0],10)));
-    console.log("Company minPPI: ", company.minPPI[0], typeof (company.minPPI[0]));
+    console.log("Company minPP I: ", company.minPPI[0], typeof (company.minPPI[0]));
+    console.log("Company branches I: ", company.branches[0], typeof (company.branches[0]));
     if (account != null) {
       let txn;
       try {
@@ -144,7 +155,8 @@ const Company = ({ web3Handler, account, placement, provider }) => {
           company.ctc[0],
           company.location[0],
           parseInt(company.maxBackLogs[0], 10),
-          company.minPPI[0]
+          company.minPPI[0],
+          company.branches[0]
         );
         let cid;
         // wait for transaction

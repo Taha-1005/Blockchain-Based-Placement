@@ -12,11 +12,11 @@ const ControlRegistration = ({ placement,provider }) => {
   const companyId = state.companyId;
   const handleStartRegistration = async (e) => {
     console.log("Placement ", placement);
-    if (!placement) {
-      swal('Oops', "Login again", 'error');
-      navigate("/login");
-      return;
-    }
+    // if (JSON.stringify(placement).length==2) {
+    //   swal('Oops', "Login again", 'error');
+    //   navigate("/login");
+    //   return;
+    // }
 
     let txn;
 
@@ -28,6 +28,11 @@ const ControlRegistration = ({ placement,provider }) => {
         const _company = await placement.companies(companyId);
         console.log("Status", _company.status);
         swal('', 'Registration has successfully started', 'success');
+        navigate('/company-home/students-applied', {
+          state: {
+            companyId: companyId
+          }
+        })
       });
     } catch (error) {
       let err = JSON.stringify(error);
@@ -54,6 +59,11 @@ const ControlRegistration = ({ placement,provider }) => {
         const _company = await placement.companies(companyId);
         console.log("Status", _company.status);
         swal('', 'Registration has successfully ended', 'success');
+        navigate('/company-home/students-applied', {
+          state: {
+            companyId: companyId
+          }
+        })
       });
     } catch (error) {
       let err = JSON.stringify(error);

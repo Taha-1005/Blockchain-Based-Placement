@@ -69,15 +69,18 @@ const Login = ({ web3Handler, account, placement, provider }) => {
                   _companyId,
                   user.password[0]
                 );
-                console.log('Company login done ...txn',_companyId);
-                let _loggedIn = await placement.companyLoggedIn(account);
-                console.log(_loggedIn);
-                swal('Hurray', 'Logged in Successfully', 'success');
-                navigate('/company-home/control-registration', {
-                  state: {
-                    companyId:_companyId
-                  }
+                console.log('Company login done ...txn', _companyId);
+                provider.waitForTransaction(txn.hash).then(async function () {
+                  let _loggedIn = await placement.companyLoggedIn(account);
+                  console.log(_loggedIn);
+                  swal('Hurray', 'Logged in Successfully', 'success');
+                  navigate('/company-home/control-registration', {
+                    state: {
+                      companyId: _companyId
+                    }
+                  });
                 });
+                
               } catch (err) {
                 let x = JSON.stringify(err);
 
@@ -106,16 +109,22 @@ const Login = ({ web3Handler, account, placement, provider }) => {
               typeof parseInt(user.id, 10),
               user.password
             );
+            const _studentId = user.id[0].toString();
             try {
               txn = await placement.loginStudent(
-                user.id[0].toString(),
+                _studentId,
                 user.password[0]
               );
               console.log('Student login done ...txn');
               provider.waitForTransaction(txn.hash).then(async function () {
                 let temp = await placement.studentLoggedIn(account);
                 console.log(temp);
-                navigate('/student-home/company');
+                navigate('/student-home/company', {
+                  state: {
+                    studentId:_studentId
+                  }
+                }
+                );
                 swal('Hurray', 'Logged in Successfully', 'success');
               });
             } catch (err) {

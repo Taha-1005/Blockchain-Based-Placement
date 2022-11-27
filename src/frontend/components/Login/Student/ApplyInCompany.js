@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { Navigate, useLocation, useNavigate } from 'react-router';
 import swal from 'sweetalert';
 import CompanyCard from './CompanyCard';
 
 const ApplyInCompany = ({ placement }) => {
   const [loading, setLoading] = useState(true);
   const [companies, setCompanies] = useState([]);
-
+  const { state } = useLocation();
+  console.log("Student id ",state.studentId);
+  const navigate = useNavigate();
   const mockData = [
     {
       eligibleBranches: ['CSE', 'EE'],
@@ -60,8 +63,10 @@ const ApplyInCompany = ({ placement }) => {
   const listRegisteredCompanies = async () => {
     let companiesData = [];
     console.log('lisiting companies ', placement);
-    if (placement == null) {
-      swal("Oops", "Login again ", 'error');
+    if (!placement) {
+      // swal("Oops", "Login again ", 'error');
+      console.log("not defined placement")
+      navigate('\login');
       return;
     }
     const totalCompanies = await placement.totalCompanies();
@@ -90,7 +95,7 @@ const ApplyInCompany = ({ placement }) => {
         description:_company.description,
         location: _company.location,
         category: parseInt(_company.category.toHexString(), 16),
-        minBacklogs: _company.maxBackLogs,
+        minBacklogs: parseInt(_company.maxBackLogs.toHexString(), 16) ,
         minPpi: _company.minPPI,
         // seatsAvailable: '',
       });
@@ -103,23 +108,27 @@ const ApplyInCompany = ({ placement }) => {
   useEffect(() => {
     listRegisteredCompanies();
   }, []);
-  if (loading)
+  if (placement && loading)
     return (
       <main style={{ padding: '1rem 0' }}>
         <h2>Loading....</h2>
       </main>
     );
+  else if (!placement) {
+    navigate('/login');
+  }
+    
   return (
     <div className='applyCompany'>
       {
         companies.map((comp) => (
-        <CompanyCard companyData={comp} key={comp.name} />
+          <CompanyCard companyData={comp} key={comp.name} studentData={state.studentId} />
         ))
       }
       {
-          mockData.map((comp) => (
-          <CompanyCard companyData={comp} key={comp.name} />
-        ))
+        //   mockData.map((comp) => (
+        //   <CompanyCard companyData={comp} key={comp.name} />
+        // ))
       }
     </div>
   );

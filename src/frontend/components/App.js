@@ -147,7 +147,7 @@ function App() {
           />
           <Route
             path='company-details'
-            element={<CompanyDetails placement={placement} />}
+            element={<CompanyDetails placement={placement} provider={provider} />}
           />
           <Route path='apply-faculty' element={<ApplyToFaculty />} />
         </Route>

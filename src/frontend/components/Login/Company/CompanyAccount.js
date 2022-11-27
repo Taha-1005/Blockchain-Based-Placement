@@ -1,10 +1,11 @@
-import React from 'react'
-// import '../../../Styles/CompanyNavBarStyle.css'
+import React from 'react';
+// import '../../../Styles/CompanyAccountStyle.css'
 
 const CompanyAccount = () => {
-  return (
-    <div>CompanyAccount</div>
-  )
-}
+  const companyDetails = {
+    name: 'sam',
+  };
+  return <div>{companyDetails.name}</div>;
+};
 
-export default CompanyAccount
+export default CompanyAccount;

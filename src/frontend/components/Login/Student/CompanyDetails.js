@@ -69,7 +69,7 @@ const CompanyDetails = () => {
            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores pariatur animi sunt, assumenda dicta distinctio nostrum nisi, ullam dignissimos dolor!
          </p> */}
               <h3 className='color-3 social-link-text'>
-                <button className='btn btn-danger'>Apply</button>
+                <button className='btn btn-danger' >Apply</button>
               </h3>
             </div>
           </div>

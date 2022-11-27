@@ -73,7 +73,7 @@ const Login = ({ web3Handler, account, placement, provider }) => {
                 let _loggedIn = await placement.companyLoggedIn(account);
                 console.log(_loggedIn);
                 swal('Hurray', 'Logged in Successfully', 'success');
-                navigate('/company-home', {
+                navigate('/company-home/control-registration', {
                   state: {
                     companyId:_companyId
                   }

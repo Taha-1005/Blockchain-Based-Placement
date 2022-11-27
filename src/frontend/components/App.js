@@ -159,7 +159,7 @@ function App() {
           <Route index element={<ControlRegistration placement={placement} provider={provider} />} />
           <Route
             path='control-registration'
-            element={<ControlRegistration />}
+            element={<ControlRegistration placement={placement} provider={provider} />}
           />
           <Route path='students-applied' element={<StudentsApplied placement={placement} provider={provider} />} />
           <Route path='account' element={<CompanyAccount placement={placement} provider={provider} />} />

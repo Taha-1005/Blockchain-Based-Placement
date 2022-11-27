@@ -22,7 +22,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -96,6 +96,7 @@ a {
   font-weight: 600;
   letter-spacing: 1px;
   font-weight: 13px;
+  margin-bottom: 10px;
 }
 button:active {
   transform: scale(1.1);

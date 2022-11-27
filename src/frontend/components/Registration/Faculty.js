@@ -70,37 +70,35 @@ const Faculty = ({ web3Handler, account, placement, provider }) => {
         txn = await placement.registerFaculty(
           faculty.fullName.toString(),
           faculty.branch.toString(),
-          faculty.password.toString(),
+          faculty.password.toString()
         );
         // wait for transaction
         console.log(txn.hash);
-        provider
-          .waitForTransaction(txn.hash)
-          .then(async function (txn) {
-            console.log('Transaction Mined: ' + txn.hash);
-            console.log(txn);
-            fid = await placement.totalFaculties();
-            fid = parseInt(fid.toHexString(), 16);
-            navigate('/login');
-            swal(
-              'Hurray!!',
-              'You are registered successfully!  \n Kindly remeber your id: ' +
+        provider.waitForTransaction(txn.hash).then(async function (txn) {
+          console.log('Transaction Mined: ' + txn.hash);
+          console.log(txn);
+          fid = await placement.totalFaculties();
+          fid = parseInt(fid.toHexString(), 16);
+          navigate('/login');
+          swal(
+            'Hurray!!',
+            'You are registered successfully!  \n Kindly remeber your id: ' +
               fid,
-              'success'
-            );
-            console.log("Total faculties ", fid);
+            'success'
+          );
+          console.log('Total faculties ', fid);
 
-            let _faculty = await placement.faculties(fid);
-            console.log(_faculty, typeof fid);
-            console.log('Address', _faculty.faculty, typeof fid);
-            console.log("Name ", _faculty.name);
-            console.log("Password ", _faculty.password);
-          });
+          let _faculty = await placement.faculties(fid);
+          console.log(_faculty, typeof fid);
+          console.log('Address', _faculty.faculty, typeof fid);
+          console.log('Name ', _faculty.name);
+          console.log('Password ', _faculty.password);
+        });
       } catch (err) {
         // let x = err.data.message.toString();
         // console.log("Json", JSON.stringify(err), typeof (JSON.stringify(err)));
         let x = JSON.stringify(err);
-        console.log('Error: ', err, "to string", x);
+        console.log('Error: ', err, 'to string', x);
         const errMsg = extractErrorCode(x);
         console.log(errMsg);
         console.log('Error in registering: ', errMsg);

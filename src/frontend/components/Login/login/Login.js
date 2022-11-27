@@ -151,7 +151,7 @@ const Login = ({ web3Handler, account, placement, provider }) => {
     <div>
       <body className='body3'>
         <div className='container'>
-          <div className='sign-up'>
+          <div className='sign-up'> 
             <h1 className='heading'>
               <b>SIGN IN</b>
             </h1>

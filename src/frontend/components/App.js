@@ -22,6 +22,9 @@ import PlacementAbi from '../contractsData/Placement.json';
 import CompanyDetails from './Login/Student/CompanyDetails';
 import ApplyToFaculty from './Login/Student/ApplyToFaculty';
 import CompanyHome from './Login/Company/CompanyHome';
+import ControlRegistration from './Login/Company/ControlRegistration';
+import CompanyAccount from './Login/Company/CompanyAccount';
+import StudentsApplied from './Login/Company/StudentsApplied';
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -152,7 +155,15 @@ function App() {
           path='/faculty-home'
           element={<FacultyPage placement={placement} />}
         />
-        <Route path='/company-home' element={<CompanyHome />} />
+        <Route path='/company-home' element={<CompanyHome />}>
+          <Route index element={<ControlRegistration />} />
+          <Route
+            path='control-registration'
+            element={<ControlRegistration />}
+          />
+          <Route path='students-applied' element={<StudentsApplied />} />
+          <Route path='account' element={<CompanyAccount />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

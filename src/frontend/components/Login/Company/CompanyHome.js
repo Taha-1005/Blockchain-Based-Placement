@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { Outlet } from 'react-router';
+import CompanyNavBar from './CompanyNavBar';
 
 const CompanyHome = () => {
   return (
-    <div>CompanyHome</div>
-  )
-}
+    <div>
+      <CompanyNavBar />
+      <Outlet/>
+    </div>
+  );
+};
 
-export default CompanyHome
+export default CompanyHome;

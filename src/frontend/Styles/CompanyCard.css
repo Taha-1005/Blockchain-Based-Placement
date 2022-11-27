@@ -14,6 +14,14 @@
   color: white;
 }
 
+.companyCard:hover .forP2 {
+  color: white;
+}
+
+.companyCard:hover .forP1 {
+  color: black;
+}
+
 .companyCard:before {
   content: attr(data-hover);
   visibility: hidden;
@@ -70,7 +78,19 @@
   cursor: initial;
 }
 
-.locations{
-  width: 50px;
+.locations {
+  width: 100px;
   word-wrap: normal;
+}
+
+.forP1 {
+  font-size: large;
+  font-weight: 500;
+  color: black;
+}
+
+.forP2 {
+  font-size: large;
+  font-weight: 500;
+  color: black;
 }

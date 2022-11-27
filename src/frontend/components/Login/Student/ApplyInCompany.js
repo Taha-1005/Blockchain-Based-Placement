@@ -107,6 +107,11 @@ const ApplyInCompany = ({ placement }) => {
       {companies.map((comp) => (
         <CompanyCard companyData={comp} key={comp.name} />
       ))}
+      {
+        //   mockData.map((comp) => (
+        //   <CompanyCard companyData={comp} key={comp.name} />
+        // ))
+      }
     </div>
   );
 };

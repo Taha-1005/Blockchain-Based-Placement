@@ -20,15 +20,15 @@ const CompanyCard = ({ companyData }) => {
         <div className='cardTitle'>{companyData.name}</div>
         <div className='cardBody'>
           <div className='jobType'>
-            <p>Jobt Type</p>
-            <p>{companyData.post}</p>
+            <p className='forP1'>Job Type</p>
+            <p className='forP2'>{companyData.post}</p>
           </div>
           <div className='ctc'>
-            <p>Cost to Company</p>
-            <p>{'INR ' + companyData.ctc + ' LPA'}</p>
+            <p className='forP1'>Cost to Company</p>
+            <p className='forP2'>{'INR ' + companyData.ctc + ' LPA'}</p>
           </div>
           <div className='location'>
-            <p>Location/s</p>
+            <p className='forP1'>Location/s</p>
             <GetLocation />
           </div>
         </div>

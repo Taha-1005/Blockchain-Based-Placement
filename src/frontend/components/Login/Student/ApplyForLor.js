@@ -83,6 +83,15 @@ const ApplyForLor = ({ placement }) => {
           handleClick={(event) => applyPage(faculty)}
         />
       ))}
+      {
+        // mockData.map((faculty) => (
+        //     <FacultyCard
+        //       key={faculty.name}
+        //       {...faculty}
+        //       handleClick={(event) => applyPage(faculty)}
+        //     />
+        //   ))
+      }
     </div>
   );
 };

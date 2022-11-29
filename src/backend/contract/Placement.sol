@@ -6,7 +6,7 @@ contract Placement {
     struct Student {
         string rollno; //0
         address payable student; //1
-        string name; //2
+        string name; //2b
         string password; // hash value
         string[1] ppi; //4
         string[1] spi;// 5
@@ -306,7 +306,7 @@ contract Placement {
 
         // has company started registeration
         require(keccak256(abi.encodePacked(companies[_companyId].status)) == keccak256(abi.encodePacked(_status)), "___Not Open for Registration :(___");
-
+        
         // check eligiblity
         require(
             isEligible(_companyId, _studentRollno),
@@ -322,9 +322,9 @@ contract Placement {
         string memory _studentRollno
     ) public view returns (bool) {
         if (students[_studentRollno].isPlaced == true) {
-            // if cur company is of same category
+            // if cur company is of greater category (1 is greater than 3)
             if (
-                companies[_companyId].category <=
+                companies[_companyId].category >=
                 companies[students[_studentRollno].companyId].category
             ) {
                 return false;
@@ -357,21 +357,30 @@ contract Placement {
         // return students[_studentRollno].spi[sem-1];
         return students[_studentRollno].spi[0];
     }
-
-
+    
+    function getSelectedStudents(uint _companyId) view public returns(string[] memory){
+        return companies[_companyId].finalSelectedStudents;
+    }
     function addSelected(
         uint _companyId,
         string memory _studentRollno
     ) public {
+        require(compare(companies[_companyId].status,"closed"),"___Ongoing company interviews____");
         companies[_companyId].finalSelectedStudents.push(_studentRollno);
-        string memory _empty = "";
-        if (
-            keccak256(abi.encodePacked(students[_studentRollno].companyId)) ==
-            keccak256(abi.encodePacked(_empty))
-        ) {
+        // string memory _empty = "";
+        // if (
+        //     keccak256(abi.encodePacked(students[_studentRollno].companyId)) ==
+        //     keccak256(abi.encodePacked(_empty))
+        // ) {
+        //     students[_studentRollno].updateLeft--;
+        // }
+        // already has offer and is upgrading
+        if(students[_studentRollno].companyId!=0){
             students[_studentRollno].updateLeft--;
         }
         students[_studentRollno].companyId = _companyId;
+        students[_studentRollno].isPlaced = true;
+        
     }
 
     // function applyForLOR() public{

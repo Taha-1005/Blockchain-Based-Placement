@@ -7,7 +7,7 @@ const ApplyInCompany = ({ placement }) => {
   const [loading, setLoading] = useState(true);
   const [companies, setCompanies] = useState([]);
   const { state } = useLocation();
-  console.log("Student id ",state.studentId);
+  // console.log("Student id ",state.studentId);
   const navigate = useNavigate();
   const mockData = [
     {
@@ -106,6 +106,10 @@ const ApplyInCompany = ({ placement }) => {
     setCompanies(companiesData);
   };
   useEffect(() => {
+    if (!placement.interface) {
+      swal("Expired","" ,"warning");
+      navigate("/login");
+    }
     listRegisteredCompanies();
   }, []);
   if (placement && loading)
@@ -114,7 +118,7 @@ const ApplyInCompany = ({ placement }) => {
         <h2>Loading....</h2>
       </main>
     );
-  else if (!placement) {
+  else if (!placement.interface) {
     navigate('/login');
   }
     

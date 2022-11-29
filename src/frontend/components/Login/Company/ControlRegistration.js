@@ -74,6 +74,61 @@ const ControlRegistration = ({ placement,provider }) => {
       swal('Oops', err, 'error');
     }
   };
+  const handleEndInterview = async (e) => {
+    console.log("Placement who applied: ", placement);
+    if (!placement.interface) {
+      swal('Oops', "Login again", 'error');
+      navigate("/login");
+      return;
+    }
+    const companyId = state.companyId;
+    let txn;
+    try {
+      txn = await placement.endCompanyProcess(companyId);
+      console.log(txn.hash);
+      provider
+        .waitForTransaction(txn.hash)
+        .then(async function (txn) {
+          console.log('Transaction Mined: ' + txn);
+          swal(
+            'Hurray!!',
+            'Interviews Ended!',
+            'success'
+          );
+
+        });
+    } catch(err) {
+      let errMsg = JSON.stringify(err);
+      errMsg = extractErrorCode(errMsg);
+      console.log('Error in registering: ', errMsg);
+      swal('Oops!', errMsg, 'error');
+    }
+    navigate('/company-home/students-applied', {
+      state: {
+        companyId: companyId
+      }
+    })
+
+  };
+  const handleStudentWhoApplied = async (e) => {
+    console.log("Placement who applied: ", placement);
+    if (!placement.interface) {
+      swal('Oops', "Login again", 'error');
+      navigate("/login");
+      return;
+    }
+    const companyId = state.companyId;
+
+
+    
+    navigate('/company-home/students-applied', {
+      state: {
+        companyId: companyId
+      }
+    })
+     
+  };
+  
   
   useEffect(() => {
     console.log(state);
@@ -92,6 +147,13 @@ const ControlRegistration = ({ placement,provider }) => {
         <button className='buttonRegister' onClick={handleEndRegistration}>
           End Registration
         </button>
+        <button className='buttonRegister' onClick={handleEndInterview}>
+          Interviews Ended
+        </button>
+        <button className='buttonRegister' onClick={handleStudentWhoApplied}>
+          See Applied Students
+        </button>
+       
       </div>
     </div>
   );

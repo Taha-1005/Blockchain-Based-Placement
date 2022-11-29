@@ -15,11 +15,13 @@ const CompanyNavBar = () => {
               Control Registration
             </NavLink>
           </li>
-          <li>
-            <NavLink to='/company-home/students-Applied'>
-              Students who Applied
-            </NavLink>
-          </li>
+          {
+            // <li>
+            // <NavLink to='/company-home/students-Applied'>
+            //   Students who Applied
+            // </NavLink>
+            // </li>
+          }
           <li>
             <NavLink to='/company-home/account'>Account</NavLink>
           </li>

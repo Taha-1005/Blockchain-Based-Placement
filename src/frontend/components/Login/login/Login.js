@@ -76,11 +76,10 @@ const Login = ({ web3Handler, account, placement, provider }) => {
                   swal('Hurray', 'Logged in Successfully', 'success');
                   navigate('/company-home/control-registration', {
                     state: {
-                      companyId: _companyId
-                    }
+                      companyId: _companyId,
+                    },
                   });
                 });
-                
               } catch (err) {
                 let x = JSON.stringify(err);
 
@@ -111,20 +110,16 @@ const Login = ({ web3Handler, account, placement, provider }) => {
             );
             const _studentId = user.id[0].toString();
             try {
-              txn = await placement.loginStudent(
-                _studentId,
-                user.password[0]
-              );
+              txn = await placement.loginStudent(_studentId, user.password[0]);
               console.log('Student login done ...txn');
               provider.waitForTransaction(txn.hash).then(async function () {
                 let temp = await placement.studentLoggedIn(account);
                 console.log(temp);
                 navigate('/student-home/company', {
                   state: {
-                    studentId:_studentId
-                  }
-                }
-                );
+                    studentId: _studentId,
+                  },
+                });
                 swal('Hurray', 'Logged in Successfully', 'success');
               });
             } catch (err) {
@@ -165,7 +160,7 @@ const Login = ({ web3Handler, account, placement, provider }) => {
     <div>
       <body className='body3'>
         <div className='container'>
-          <div className='sign-up'> 
+          <div className='sign-up'>
             <h1 className='heading'>
               <b>SIGN IN</b>
             </h1>

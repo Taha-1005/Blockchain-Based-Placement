@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router';
 import '../../../Styles/ApplyToFacultyStyle.css';
 
 const ApplyToFaculty = () => {
   const location = useLocation();
   const facultyData = location.state.data;
-  let desc = '';
-  console.log(location);
-  //Put stuff for student to enter why faculty should give LOR
+  const [desc, setDesc] = useState();
+  // console.log(location);
+
+  const assignDesc = (e) => {
+    setDesc(e.target.value);
+    // console.log(e.target.value);
+  };
+
   return (
     <div className='applyFacBody'>
       <h1 className='facName'>{facultyData.name}</h1>
@@ -16,7 +21,8 @@ const ApplyToFaculty = () => {
           Enter why the faculty should give you LOR. Also mention required
           details for the LOR
         </p>
-        <textarea className='desc' type='textarea' />
+        <textarea className='desc' onChange={assignDesc} />
+        <button className='finalApply'>Apply for LOR</button>
       </div>
     </div>
   );

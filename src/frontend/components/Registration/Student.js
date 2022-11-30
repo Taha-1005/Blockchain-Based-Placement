@@ -127,8 +127,8 @@ const Student = ({ web3Handler, account, placement, provider }) => {
     e.preventDefault();
     if (account != null) {
       let txn;
-      // let backlog = parseInt(student.backlogs.toString(), 10);
-      // console.log(backlog, typeof (backlog));
+      let backlog = parseInt(student.backlogs[0], 10);
+      console.log(backlog, typeof (backlog));
       console.log("In handle submit", student);
       
       let _ppi = [student.ppi.toString()];
@@ -146,7 +146,7 @@ const Student = ({ web3Handler, account, placement, provider }) => {
           _spi,
           //  _percentage10,
           student.twelthPercentage.toString(),
-          parseInt(student.backlogs.toString(), 10)
+          parseInt(student.backlogs[0], 10)
         );
         let cid;
         // wait for transaction

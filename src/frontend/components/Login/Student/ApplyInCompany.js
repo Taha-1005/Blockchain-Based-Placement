@@ -18,7 +18,7 @@ const ApplyInCompany = ({ placement }) => {
       onlyJob: '0',
       internshipAndJob: '1',
       linkToWebsite: 'a.com',
-      location: ['PAN INDIA'],
+      location: 'PAN INDIA',
       category: 'A',
       minBacklogs: '0',
       minPpi: '7.5',
@@ -34,7 +34,7 @@ const ApplyInCompany = ({ placement }) => {
       onlyJob: '1',
       internshipAndJob: '0',
       linkToWebsite: 'b.com',
-      location: ['Surat', 'Banglore'],
+      location: 'Surat, Banglore',
       category: 'A',
       minBacklogs: '0',
       minPpi: '7.8',
@@ -50,7 +50,7 @@ const ApplyInCompany = ({ placement }) => {
       onlyJob: '0',
       internshipAndJob: '0',
       linkToWebsite: 'c.com',
-      location: ['Rajkot', 'Banglore', 'Mumbai', 'Hyderabad'],
+      location: 'Rajkot, Banglore, Mumbai, Hyderabad',
       category: 'A',
       minBacklogs: '0',
       minPpi: '7.5',
@@ -65,8 +65,8 @@ const ApplyInCompany = ({ placement }) => {
     console.log('lisiting companies ', placement);
     if (!placement) {
       // swal("Oops", "Login again ", 'error');
-      console.log("not defined placement")
-      navigate('\login');
+      console.log('not defined placement');
+      navigate('login');
       return;
     }
     const totalCompanies = await placement.totalCompanies();
@@ -84,7 +84,7 @@ const ApplyInCompany = ({ placement }) => {
       // const totalPrice = await placement.getTotPrice(_company._companyId)
       console.log();
       companiesData.push({
-        companyId:index,
+        companyId: index,
         eligibleBranches: [],
         name: _company.name,
         ctc: _company.ctc,
@@ -92,10 +92,10 @@ const ApplyInCompany = ({ placement }) => {
         // onlyJob: '',
         // internshipAndJob: '',
         // linkToWebsite: '',
-        description:_company.description,
+        description: _company.description,
         location: _company.location,
         category: parseInt(_company.category.toHexString(), 16),
-        minBacklogs: parseInt(_company.maxBackLogs.toHexString(), 16) ,
+        minBacklogs: parseInt(_company.maxBackLogs.toHexString(), 16),
         minPpi: _company.minPPI,
         // seatsAvailable: '',
       });
@@ -107,8 +107,8 @@ const ApplyInCompany = ({ placement }) => {
   };
   useEffect(() => {
     if (!placement.interface) {
-      swal("Expired","" ,"warning");
-      navigate("/login");
+      swal('Expired', '', 'warning');
+      navigate('/login');
     }
     listRegisteredCompanies();
   }, []);
@@ -121,14 +121,16 @@ const ApplyInCompany = ({ placement }) => {
   else if (!placement.interface) {
     navigate('/login');
   }
-    
+
   return (
     <div className='applyCompany'>
-      {
-        companies.map((comp) => (
-          <CompanyCard companyData={comp} key={comp.name} studentData={state.studentId} />
-        ))
-      }
+      {companies.map((comp) => (
+        <CompanyCard
+          companyData={comp}
+          key={comp.name}
+          studentData={state.studentId}
+        />
+      ))}
       {
         //   mockData.map((comp) => (
         //   <CompanyCard companyData={comp} key={comp.name} />

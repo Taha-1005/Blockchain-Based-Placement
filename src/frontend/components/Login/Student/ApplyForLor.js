@@ -68,30 +68,30 @@ const ApplyForLor = ({ placement }) => {
   useEffect(() => {
     listRegisteredFaculties();
   }, []);
-  if (loading)
-    return (
-      <main style={{ padding: '1rem 0' }}>
-        <h2>Loading....</h2>
-      </main>
-    );
+  // if (loading)
+  //   return (
+  //     <main style={{ padding: '1rem 0' }}>
+  //       <h2>Loading....</h2>
+  //     </main>
+  //   );
   return (
     <div>
-      {faculties.map((faculty) => (
+      {
+        //   faculties.map((faculty) => (
+        //   <FacultyCard
+        //     key={faculty.name}
+        //     {...faculty}
+        //     handleClick={(event) => applyPage(faculty)}
+        //   />
+        // ))
+      }
+      {mockData.map((faculty) => (
         <FacultyCard
           key={faculty.name}
           {...faculty}
           handleClick={(event) => applyPage(faculty)}
         />
       ))}
-      {
-        // mockData.map((faculty) => (
-        //     <FacultyCard
-        //       key={faculty.name}
-        //       {...faculty}
-        //       handleClick={(event) => applyPage(faculty)}
-        //     />
-        //   ))
-      }
     </div>
   );
 };

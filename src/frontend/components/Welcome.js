@@ -8,7 +8,7 @@ const Welcome = () => {
   return (
     <div>
       <body className='body2'>
-        <header>
+        <header className='header1'>
           <div className='wrapper'>
             <div className='logo'>
               <img src='https://i.postimg.cc/mg4rWBmv/logo.png' alt=''></img>

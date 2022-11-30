@@ -1,0 +1,41 @@
+
+.row {
+    display: flex;
+  }
+  
+.column_1{
+    background-color: antiquewhite;
+    flex: 50%;
+  }
+.column_2 {
+    background-color: antiquewhite;
+    flex: 50%;
+  }
+
+.img_resize{
+    width: 700px;
+    height: 800px;
+}
+
+.img_resize_2{
+    width: 700px;
+    height: 80px;
+}
+
+.text_h1{
+    margin-top:2rem;
+    text-align: center;
+    color: black;
+}
+
+.button_edit{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+

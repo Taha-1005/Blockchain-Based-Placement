@@ -23,7 +23,7 @@ $ npm install
 ```
 ### 3. Boot up local development blockchain
 ```
-$ cd nft_marketplace
+$ cd Blockchain-Based-Placement
 $ npx hardhat node
 ```
 

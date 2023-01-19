@@ -10,14 +10,13 @@ contract Placement {
         string password; // hash value
         string[1] ppi; //4
         string[1] spi;// 5
-        // string percentage10;
         string percentage12; //6
-        uint256 backLogs;// 7
+        uint backLogs;// 7
         string resume; //8
         bool isPlaced;
         bool isInProgress;
         uint companyId;
-        uint256 updateLeft;
+        uint updateLeft;
         string LORStatus;
         // notApplied accepted rejceted recieved
     }
@@ -26,14 +25,14 @@ contract Placement {
         address payable company;
         string password;
         string description;
-        uint256 category; // 1-> A+ 2-> A 3-> B
+        uint category; // 1-> A+ 2-> A 3-> B
         string ctc;
         string location;
         string branches;
         string[] finalSelectedStudents;
         string[] registeredStudents;
         // elgiblity criterion
-        uint256 maxBackLogs;
+        uint maxBackLogs;
         string minPPI;
         string status;
 
@@ -88,7 +87,7 @@ contract Placement {
         string[1] memory _spi,
         // string memory _percentage10,
         string memory _percentage12,
-        uint256 _backLogs
+        uint _backLogs
     ) public {
         // require(!doesAddressExists(payable(msg.sender)), "___Please use another address___");
 
@@ -161,10 +160,10 @@ contract Placement {
         string memory _name,
         string memory _description,
         string memory _password,
-        uint256 _category,
+        uint _category,
         string memory _ctc,
         string memory _location,
-        uint256 _maxBackLogs,
+        uint _maxBackLogs,
         string memory _minPPI,
         string memory _branches
     
@@ -333,19 +332,11 @@ contract Placement {
             else if (students[_studentRollno].updateLeft < 0) {
                 return false;
             }
-
-            // back log criterion
-            if (
-                students[_studentRollno].backLogs >
-                companies[_companyId].maxBackLogs
-            ) return false;
-
-            // ppi criterion todo - in frontendt
-            // if(students[_studentRollno].ppi[7] < companies[_companyId].minPPI) return false;
-            // if(isPPIgreater(students[_studentRollno].ppi[0],companies[_companyId].minPPI))return true;
-            // return false;
-            return true;
         }
+         // back log criterion
+        if (students[_studentRollno].backLogs >companies[_companyId].maxBackLogs) 
+            return false;
+
         return true;
     }
    

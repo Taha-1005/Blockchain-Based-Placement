@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../../../Styles/CompanyNavBarStyle.css'
+import '../../../Styles/CompanyNavBarStyle.css';
 
 const CompanyNavBar = () => {
   return (
@@ -10,12 +10,12 @@ const CompanyNavBar = () => {
           Blockchain based Placement Portal
         </NavLink>
         <ul>
-          <li>
-            <NavLink to='/company-home/control-registration'>
-              Control Registration
-            </NavLink>
-          </li>
           {
+            // <li>
+            //   <NavLink to='/company-home/control-registration'>
+            //     Control Registration
+            //   </NavLink>
+            // </li>
             // <li>
             // <NavLink to='/company-home/students-Applied'>
             //   Students who Applied

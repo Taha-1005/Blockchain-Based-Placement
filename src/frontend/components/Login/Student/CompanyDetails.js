@@ -17,6 +17,11 @@ const CompanyDetails = ({ placement, provider }) => {
     const _companyId = companyData.companyId;
     try {
       console.log("sid: ", _studentId);
+      const studBacklog = await placement.students(_studentId);
+      console.log("Student back log",studBacklog);
+
+      const compBackLog = await placement.companies(_companyId);
+      console.log(compBackLog.maxBackLogs);
       txn = await placement.applyForCompany(_companyId, _studentId);
       provider.waitForTransaction(txn.hash).then(async function () {
         let _isEligible = await placement.isEligible(_companyId, _studentId);
